@@ -28,6 +28,22 @@ namespace BE
         {
             return new GeoCoordinate(Latitude, Longitude);
         }
+        public object Clone()
+        {
+            return new Report()
+            {
+                Id = Id,
+                ReporterName = ReporterName,
+                EventLocation = EventLocation,
+                Latitude = Latitude,
+                Longitude = Longitude,
+                Time = new DateTime(Time.Ticks),
+                NoiseIntensity = NoiseIntensity,
+                NumOfExplosions = NumOfExplosions,
+                Event = Event?.Clone() as Event,
+                ClusterId = ClusterId,
+            };
+        }
     }
     
 

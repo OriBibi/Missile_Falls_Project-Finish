@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
+using System.Windows.Controls;
 using BE;
 using BL;
 using Missile_Falls_Project.Annotations;
@@ -15,16 +15,16 @@ using QuickType;
 
 namespace Missile_Falls_Project.ViewModels
 {
-    public class NewReportFormVM : INotifyPropertyChanged
+    public class NewReportFormVM 
     {
-        public NewReportFormVM()
+    /*    public NewReportFormVM()
         {
             FormModel = new NewReportFormModel();
             reportModel = FormModel.Report.Clone() as Report;
             AddReportCommand = new RelayCommand<NewReportFormModel>(formModel =>
             {
-                if (reportModel.Name == "" ||
-                reportModel.Address == null ||
+                if (reportModel.ReporterName == "" ||
+                reportModel.EventLocation == null ||
                 reportModel.NoiseIntensity == 0 ||
                 reportModel.NumOfExplosions == 0)
                     return;
@@ -70,6 +70,6 @@ namespace Missile_Falls_Project.ViewModels
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        }*/
     }
 }

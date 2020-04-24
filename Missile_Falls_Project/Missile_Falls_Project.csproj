@@ -191,6 +191,7 @@
       <DependentUpon>ActionButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\NewReportFormModel.cs" />
+    <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="ViewModels\NewReportFormVM.cs" />
     <Compile Include="Views\GeoLocationAutoComplete.xaml.cs">
       <DependentUpon>GeoLocationAutoComplete.xaml</DependentUpon>

@@ -27,6 +27,16 @@ namespace BE
         {
             return Id + ": " + StartTime;
         }
+        public Object Clone()
+        {
+            return new Event(StartTime)
+            {
+                Id = Id,
+                EndTime = new DateTime(EndTime.Ticks),
+                Hits = (from explosion in Hits select explosion?.Clone() as Hit).ToList(),
+                Reports = (from report in Reports select report?.Clone() as Report).ToList(),
+            };
+        }
     }
 }
 
