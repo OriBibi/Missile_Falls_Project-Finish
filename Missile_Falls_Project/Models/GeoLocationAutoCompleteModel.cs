@@ -10,7 +10,7 @@ namespace Missile_Falls_Project.Models
 {
     class GeoLocationAutoCompleteModel
     {
-       /* public string Address { get; set; }
+        public string Address { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
 
@@ -31,6 +31,6 @@ namespace Missile_Falls_Project.Models
                 result.AddRange(res.Results);
             }
             return result;
-        }*/
+        }
     }
 }

@@ -33,7 +33,7 @@
                     </Button>
                 </Grid>
                 <ListView>
-                    <!-- <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Vertical">
                         <Grid Margin="10" x:Name="Grid1" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -74,11 +74,11 @@
                              Text="{Binding Report.NumOfExplosions, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
                              Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="1" />
                             <Label VerticalAlignment="Center" Grid.Row="4" Margin="3" Grid.Column="0" Content="Time:" />
-                           הייתה כאן הערה<DatePicker x:Name="TimeDatePicker" VerticalAlignment="Center" Width="250" SelectedDate="{Binding Report.Time, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="1"/>
+                           <!--<DatePicker x:Name="TimeDatePicker" VerticalAlignment="Center" Width="250" SelectedDate="{Binding Report.Time, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="1"/>
                     <xctk:DateTimePicker x:Name="TimeDatePicker" CalendarWidth="400"
                                          VerticalAlignment="Center" Width="250"
                                          Value="{Binding Report.Time, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
-                                         Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="1" />עד כאן
+                                         Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="1" />-->
         </Grid>
         <Separator />
         <DockPanel Margin="3" x:Name="ActionsPanel">

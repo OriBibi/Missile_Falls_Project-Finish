@@ -11,7 +11,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <!--:DataContext="{d:DesignInstance Type=viewModels:GeoLocationAutoCompleteVM}" 
         <controls1:AutoCompleteBox
             materialDesign:HintAssist.Hint="Enter Address Here"
                          x:Name="CompleteBox"
@@ -20,6 +19,6 @@
             TextChanged="AutoCompleteBox_OnTextChanged"
             SelectionChanged="CompleteBox_OnSelectionChanged"
             SelectedItem="{Binding Path=SelectedResult, Mode=TwoWay}"
-        />-->
+        />
     </Grid>
 </UserControl>
