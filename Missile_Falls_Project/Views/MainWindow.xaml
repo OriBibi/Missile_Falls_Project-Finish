@@ -4,14 +4,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-
+        xmlns:Missile_Falls_Project="clr-namespace:Missile_Falls_Project"
+        xmlns:localVMs="clr-namespace:Missile_Falls_Project.ViewModels"
+        md:DialogServiceViews.IsRegistered="True"
         xmlns:local="clr-namespace:Missile_Falls_Project.Views"
         xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
 
         mc:Ignorable="d"
         Title="Missile Falls Project" Height="450" Width="800">
-    <Grid>
-        <DockPanel>
+
+    <Window.Resources>
+        <!-- Insert here your Data Templates -->
+        <DataTemplate x:Key="SampleTemplate">
+            <StackPanel/>
+        </DataTemplate>
+
+    </Window.Resources>
+        <DockPanel  d:DataContext="{d:DesignInstance localVMs:MainViewModel }">
             <Grid DockPanel.Dock="Top"  >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -27,9 +36,11 @@
        
             </Grid>
 
-            
+        <DockPanel>
+            <local:NewReport x:Name="newReport" ReportFormVm="{Binding NewReportFormVm}"/>
+
         </DockPanel>
+    </DockPanel>
         
-    </Grid>
     
 </Window>

@@ -17,7 +17,7 @@ namespace Missile_Falls_Project.ViewModels
 {
     public class NewReportFormVM 
     {
-    /*    public NewReportFormVM()
+       public NewReportFormVM()
         {
             FormModel = new NewReportFormModel();
             reportModel = FormModel.Report.Clone() as Report;
@@ -70,6 +70,6 @@ namespace Missile_Falls_Project.ViewModels
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }*/
+        }
     }
 }

@@ -112,6 +112,7 @@ namespace BL
 
             var res = _dal.AddReport(report);
             UpdateHits(report);
+
         }
 
         
