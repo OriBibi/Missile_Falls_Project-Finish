@@ -2,8 +2,10 @@
 using DAL;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
 using System.Device.Location;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace BL
@@ -29,12 +31,12 @@ namespace BL
             _dal.UpdateEvent(_event);
         }
 
-        public List<Event> GetEvents(Predicate<Event> predicate = null)
+        public List<Event> GetEvents(Expression<Func<Event, bool>> predicate = null)
         {
              return _dal.GetEvents(predicate); 
         }
 
-        public Task<List<Event>> GetEventsAsync(Predicate<Event> predicate = null)
+        public Task<List<Event>> GetEventsAsync(Expression<Func<Event, bool>> predicate = null)
         {
             return _dal.GetEventsAsync(predicate);
         }
@@ -60,10 +62,10 @@ namespace BL
 
         #region Reports
 
-        public void AddReport(Report report)
+        public async void AddReport(Report report)
         {
-            List<Event> events = _dal.GetEvents(e => e.StartTime <= report.Time.AddMinutes(5) &&
-                                  e.EndTime >= report.Time.AddMinutes(-5));
+            List<Event> events = _dal.GetEvents(e => e.StartTime <= EntityFunctions.AddMinutes(report.Time,5).Value &&
+                                  e.EndTime >= EntityFunctions.AddMinutes(report.Time, -5).Value).ToList();
                
                 /*(from e in GetEvents()
                                   where e.StartTime <= report.Time.AddMinutes(10) &&
@@ -110,7 +112,7 @@ namespace BL
                 report.Event = new Event(report.Time) { StartTime = report.Time };
             }
 
-            var res = _dal.AddReport(report);
+            var res = await _dal.AddReportAsync(report);
             UpdateHits(report);
         }
 
@@ -125,12 +127,12 @@ namespace BL
             _dal.UpdateReport(report);
         }
 
-        public List<Report> GetReports(Predicate<Report> predicate = null)
+        public List<Report> GetReports(Expression<Func<Report, bool>> predicate = null)
         {
             return _dal.GetReports(predicate);
         }
 
-        public Task<List<Report>> GetReportsAsync(Predicate<Report> predicate = null)
+        public Task<List<Report>> GetReportsAsync(Expression<Func<Report, bool>> predicate = null)
         {
             return _dal.GetReportsAsync(predicate);
         }
@@ -169,7 +171,7 @@ namespace BL
                     ApproxLongitude = g.Longitude,
                     Event = _event
                 };
-                await _dal.AddHit(h);
+                await _dal.AddHitAsync(h);
             }
 
         }
@@ -179,7 +181,7 @@ namespace BL
 
         public Task<Hit> AddHit(Hit explosion)
         {
-            return _dal.AddHit(explosion);
+            return _dal.AddHitAsync(explosion);
         }
 
         public void RemoveHit(int id)
@@ -192,19 +194,19 @@ namespace BL
             _dal.UpdateHit(hit);
         }
 
-        public Task<List<Hit>> GetHits(Predicate<Hit> predicate = null)
+        public Task<List<Hit>> GetHits(Expression<Func<Hit, bool>> predicate = null)
         {
-            return _dal.GetHits(predicate);
+            return _dal.GetHitsAsync(predicate);
         }
 
-        public List<Hit> GetHitsSync()
+        public List<Hit> GetHits()
         {
-            return _dal.GetHitsSync();
+            return _dal.GetHits();
         }
 
         public Hit GetHit(int id)
         {
-            return _dal.GetHits(x => x.Id == id).Result.FirstOrDefault();
+            return _dal.GetHit(id);
         }
 
         #endregion
