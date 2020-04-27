@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public class BlImp : IBl
+    public class BlImp :IBl
     {
         private IDal _dal = new DalImp();
 
