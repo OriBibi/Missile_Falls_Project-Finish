@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,29 +13,33 @@ namespace DAL
         #region Event methods
         void AddEvent(Event _event);
         void RemoveEvent(int id);
+        //void RemoveEventAsync(int id);
         void UpdateEvent(Event _event);
-        List<Event> GetEvents(Predicate<Event> predicate = null);
-        Task<List<Event>> GetEventsAsync(Predicate<Event> predicate = null);
+        List<Event> GetEvents(Expression<Func<Event,bool>> predicate = null);
+        Task<List<Event>> GetEventsAsync(Expression<Func<Event, bool>> predicate = null);
         Event GetEvent(int id);
         #endregion
 
         #region Report methods
-        Task<Report> AddReport(Report report);
+        Task<Report> AddReportAsync(Report report);
+        //bool AddReport(Report report);
         void RemoveReport(int id);
         void UpdateReport(Report report);
-        List<Report> GetReports(Predicate<Report> predicate = null);
-        Task<List<Report>> GetReportsAsync(Predicate<Report> predicate = null);
+        List<Report> GetReports(Expression<Func<Report, bool>> predicate = null);
+        Task<List<Report>> GetReportsAsync(Expression<Func<Report, bool>> predicate = null);
         Report GetReport(int id);
         #endregion
 
         #region Hit methods
-        Task<List<Hit>> GetHits(Predicate<Hit> predicate = null);
-        Task<Hit> GetHitByEventId(int eventId);
-        List<Hit> GetHitsSync();
-        Task<Hit> AddHit(Hit hit);
-        void UpdateHit(Hit hit);
+        //bool AddHit(Hit hit);
+        Task<Hit> AddHitAsync(Hit hit);
         void RemoveHit(int hitId);
-
+        void UpdateHit(Hit hit);
+        Task<List<Hit>> GetHitsAsync(Expression<Func<Hit, bool>> predicate = null);
+        List<Hit> GetHits(Expression<Func<Hit, bool>> predicate = null);
+        Hit GetHit(int id);
+        Hit GetHitByEventId(int eventId);
+        //List<Hit> GetHitsAsync();
         #endregion
     }
 }

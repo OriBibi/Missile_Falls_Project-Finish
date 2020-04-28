@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BE;
+using BL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,6 +35,14 @@ namespace Missile_Falls_Project.Views
 
             DataContext = MainViewModel;
 
+
+            IBl ibl = new BlImp();
+
+            ibl.AddReport(new Report());
+            ibl.AddReport(new Report());
+            ibl.AddReport(new Report());
+
+            ibl.GetReports();
         }
 
         public void SelectedTabChange(object sender, RoutedEventArgs e)
