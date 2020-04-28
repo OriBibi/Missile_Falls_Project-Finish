@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public class BlImp : IBl
+    public class BlImp :IBl
     {
         private IDal _dal = new DalImp();
 
@@ -114,6 +114,7 @@ namespace BL
 
             var res = await _dal.AddReportAsync(report);
             UpdateHits(report);
+
         }
 
         

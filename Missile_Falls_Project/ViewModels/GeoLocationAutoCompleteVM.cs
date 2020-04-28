@@ -13,7 +13,7 @@ using QuickType;
 
 namespace Missile_Falls_Project.ViewModels
 {
-   /* public class GeoLocationAutoCompleteVM : INotifyPropertyChanged
+   public class GeoLocationAutoCompleteVM : INotifyPropertyChanged
     {
         private List<Result> _locationList;
 
@@ -56,5 +56,5 @@ namespace Missile_Falls_Project.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-    }*/
+    }
 }

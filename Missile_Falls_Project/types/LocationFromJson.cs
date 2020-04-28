@@ -4,7 +4,7 @@ using BE;
 
 namespace QuickType
 {
-   /* using System;
+    using System;
     using System.Collections.Generic;
     using System.Globalization;
     using Newtonsoft.Json;
@@ -72,7 +72,7 @@ namespace QuickType
         {
             return new Result()
             {
-                Title = (value as Report)?.Address
+                Title = (value as Report)?.EventLocation
             };
         }
 
@@ -84,7 +84,7 @@ namespace QuickType
                 if (parameter is Report)
                 {
                     Report report = parameter as Report;
-                    report.Address = result.ToString();
+                    report.EventLocation = result.ToString();
                     report.Latitude = result.Position[0];
                     report.Longitude = result.Position[1];
                     return report;
@@ -220,5 +220,5 @@ namespace QuickType
         }
 
         public static readonly TypeEnumConverter Singleton = new TypeEnumConverter();
-    }*/
+    }
 }

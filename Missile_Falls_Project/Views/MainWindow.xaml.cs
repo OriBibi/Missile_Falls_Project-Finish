@@ -14,6 +14,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Reflection;
+using Missile_Falls_Project.ViewModels;
+using log4net;
 
 namespace Missile_Falls_Project.Views
 {
@@ -22,9 +25,16 @@ namespace Missile_Falls_Project.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static readonly ILog Log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        public MainViewModel MainViewModel { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+            MainViewModel = new MainViewModel();
+            newReport.ReportFormVm = MainViewModel.NewReportFormVm;
+
+            DataContext = MainViewModel;
+
 
             IBl ibl = new BlImp();
 
@@ -35,12 +45,10 @@ namespace Missile_Falls_Project.Views
             ibl.GetReports();
         }
 
-        private void SelectedTabChange(object sender, RoutedEventArgs e)
+        public void SelectedTabChange(object sender, RoutedEventArgs e)
         {
-            NewReport newReport = new NewReport();
             int index = int.Parse(((Button)e.Source).Uid);
-
-           // GridCursor.Margin = new Thickness((150 * index), 0, 0, 0);
+            GridCursor.Margin = new Thickness((150 * index), 0, 0, 0);
 
             if (index == 0)
             {
@@ -52,12 +60,12 @@ namespace Missile_Falls_Project.Views
             }
             else if (index == 1)
             {
-               // GraphView.Visibility = Visibility.Visible;
-               // ChooseExplosionsView.Visibility = Visibility.Visible;            
-               // ReportFormView.Visibility = Visibility.Collapsed;
+                // GraphView.Visibility = Visibility.Visible;
+                // ChooseExplosionsView.Visibility = Visibility.Visible;            
+                newReport.Visibility = Visibility.Collapsed;
                 //MapView.Visibility = Visibility.Collapsed;
             }
-        
-    }
+
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace Missile_Falls_Project.Controls
     /// <summary>
     /// Interaction logic for GeoLocationAutoComplete.xaml
     /// </summary>
-  /*  public partial class GeoLocationAutoComplete : UserControl
+    public partial class GeoLocationAutoComplete : UserControl
     {
 
         public static readonly DependencyProperty SelectedLocationProperty = DependencyProperty.Register(
@@ -63,5 +63,5 @@ namespace Missile_Falls_Project.Controls
         {
             SelectedLocation = (Result)(sender as AutoCompleteBox)?.SelectedItem;
         }
-    }*/
+    }
 }
