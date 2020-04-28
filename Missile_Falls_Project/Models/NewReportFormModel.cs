@@ -16,7 +16,7 @@ namespace Missile_Falls_Project.Models
     {
         private readonly IBl _bl = new BlImp();
 
-        public Report Report { get; set; } = new Report();
+        public Report Report { get; set; } =  new Report();
 
         public async void AddReport()
         {
