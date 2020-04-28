@@ -20,12 +20,12 @@ namespace Missile_Falls_Project.Models
 
         public async void AddReport()
         {
-           
-           //var res = _bl.AddReport(Report); 
-           // var message = res != null ?
-           //   $"The Report: {res.Id}\nFrom: {res.ReporterName}\nOn: {res.Time} Saved Successfully!" :
-           //   "Something went wrong when trying to add report!";
-           //MessageBox.Show(message);
+
+            //var res = _bl.addreport(report);
+            //var message = res != null ?
+            //  $"the report: {res.id}\nfrom: {res.reportername}\non: {res.time} saved successfully!" :
+            //  "something went wrong when trying to add report!";
+            //messagebox.show(message);
         }
 
     }
