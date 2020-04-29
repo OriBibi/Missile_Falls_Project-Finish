@@ -15,7 +15,7 @@ using QuickType;
 
 namespace Missile_Falls_Project.ViewModels
 {
-    public class NewReportFormVM 
+    public class NewReportFormVM : INotifyPropertyChanged
     {
        public NewReportFormVM()
         {

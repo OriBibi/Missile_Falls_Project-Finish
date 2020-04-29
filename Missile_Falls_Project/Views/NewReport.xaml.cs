@@ -24,7 +24,7 @@ using QuickType;
 namespace Missile_Falls_Project.Views
 {
     /// <summary>
-    /// Interaction logic for NewReportFormView.xaml
+    /// Interaction logic for NewReport.xaml
     /// </summary>
     public partial class NewReport : UserControl, INotifyPropertyChanged
     {
@@ -81,11 +81,7 @@ namespace Missile_Falls_Project.Views
         {
             int _;
             SaveButton.IsEnabled = AddressTextBox.SelectedLocation != null &&
-                                   NameTextBox.Text != "" &&
-                                   !(NoiseIntensityTextBox.Text == "0" ||
-                                   !int.TryParse(NoiseIntensityTextBox.Text, out _)) &&
-                                   !(NumOfExplosionsTextBox.Text == "0" ||
-                                   !int.TryParse(NumOfExplosionsTextBox.Text, out _));
+                                   NameTextBox.Text != "" ;
         }
 
         private void AddressTextBox_OnSelectedChanged(object sender, SelectionChangedEventArgs e)

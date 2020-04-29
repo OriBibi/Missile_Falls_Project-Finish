@@ -13,7 +13,7 @@
        
         mc:Ignorable="d"
          Height="450" Width="800" Background="#FF3A3A3A"
-    TextElement.FontSize="18">
+    TextElement.FontSize="18" d:DesignHeight="700" d:DesignWidth="600" Loaded="UserControl_Loaded">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -54,7 +54,7 @@
                                 <materialDesign:PackIcon Kind="Search"/>
                             </Button>
                             <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" Grid.Column="0" Content="Name:" />
-                            <TextBox x:Name="NameTextBox"
+                            <TextBox x:Name="NameTextBox" TextChanged="SaveEnableCheck"
                              materialDesign:HintAssist.Hint="Enter Name Here" Width="250" VerticalAlignment="Center"
                              Text="{Binding Report.Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
                              Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="1" />
@@ -88,7 +88,7 @@
                         Icon="ContentSave"
                         Style="{StaticResource MaterialDesignRaisedButton}" />
                             <Controls:ActionButton
-                        DockPanel.Dock="Right" HorizontalAlignment="Right" 
+                        DockPanel.Dock="Right" HorizontalAlignment="Right"  ButtonClick="ResetForm"
                         Text="CANCEL" State="flat" Icon="Cancel" Style="{StaticResource MaterialDesignFlatButton}"/>
                         </DockPanel>
                     </StackPanel>
