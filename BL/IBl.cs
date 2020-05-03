@@ -18,7 +18,7 @@ namespace BL
         #endregion
 
         #region Report methods
-        void AddReport(Report report);
+        Task<Report> AddReportAsync(Report report);
         void RemoveReport(int id);
         void UpdateReport(Report report);
         List<Report> GetReports(Expression<Func<Report, bool>> predicate = null);

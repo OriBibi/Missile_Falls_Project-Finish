@@ -36,13 +36,13 @@ namespace Missile_Falls_Project.Views
             DataContext = MainViewModel;
 
 
-            //IBl ibl = new BlImp();
+            IBl ibl = new BlImp();
 
-            //ibl.AddReport(new Report());
-            //ibl.AddReport(new Report());
-            //ibl.AddReport(new Report());
+            ibl.AddReportAsync(new Report());
+            ibl.AddReportAsync(new Report());
+            ibl.AddReportAsync(new Report());
 
-            //ibl.GetReports();
+            ibl.GetReports();
         }
 
         public void SelectedTabChange(object sender, RoutedEventArgs e)

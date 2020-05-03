@@ -20,7 +20,7 @@ namespace Missile_Falls_Project.ViewModels
        public NewReportFormVM()
         {
             FormModel = new NewReportFormModel();
-            reportModel = FormModel.Report.Clone() as Report;
+            reportModel = FormModel.report.Clone() as Report;
             AddReportCommand = new RelayCommand<NewReportFormModel>(formModel =>
             {
                 if (reportModel.ReporterName == "" ||
@@ -28,9 +28,9 @@ namespace Missile_Falls_Project.ViewModels
                 reportModel.NoiseIntensity == 0 ||
                 reportModel.NumOfExplosions == 0)
                     return;
-                formModel.Report = reportModel.Clone() as Report;
+                formModel.report = reportModel.Clone() as Report;
                 Report = new Report();
-                formModel.AddReport();
+                formModel.AddReportAsync();
             },
                 //if have more condition to add report 
                 report =>
