@@ -34,16 +34,23 @@ namespace Missile_Falls_Project.Views
             newReport.ReportFormVm = MainViewModel.NewReportFormVm;
             newReport.Visibility =Visibility.Collapsed ;
             DataContext = MainViewModel;
-
-
-            //IBl ibl = new BlImp();
-
-            //ibl.AddReport(new Report());
-            //ibl.AddReport(new Report());
-            //ibl.AddReport(new Report());
-
-            //ibl.GetReports();
+            Closing += MainView_Closing;
         }
+        private void MainView_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+            {
+                /*
+                    if (((MainViewModel)(this.DataContext)).Data.IsModified)
+                    if (!((MainViewModel)(this.DataContext)).PromptSaveBeforeExit())
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                */
+                Log.Info("Closing App");
+            }
+
+            
+        
 
         public void SelectedTabChange(object sender, RoutedEventArgs e)
         {
