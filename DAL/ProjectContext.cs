@@ -13,7 +13,7 @@ namespace DAL
     {
         public ProjectContext() : base("projectDB")
         {
-            
+            Database.SetInitializer <ProjectContext> (new DropCreateDatabaseIfModelChanges<ProjectContext> ());
         }
         public DbSet<Event> Events { get; set; }
         public DbSet<Report> Reports { get; set; }
