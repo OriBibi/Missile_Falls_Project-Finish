@@ -16,16 +16,16 @@ namespace Missile_Falls_Project.Models
     {
         private readonly IBl _bl = new BlImp();
 
-        public Report Report { get; set; } =  new Report();
+        public Report report { get; set; } =  new Report();
 
-        public async void AddReport()
+        public async void AddReportAsync()
         {
-           
-           //var res = _bl.AddReport(Report); 
-           // var message = res != null ?
-           //   $"The Report: {res.Id}\nFrom: {res.ReporterName}\nOn: {res.Time} Saved Successfully!" :
-           //   "Something went wrong when trying to add report!";
-           //MessageBox.Show(message);
+
+            var res = await _bl.AddReportAsync(report);
+            var message = res != null ?
+              $"The Report: {res.Id}\nFrom: {res.ReporterName}\nOn: {res.Time} Saved Successfully!" :
+              "Something went wrong when trying to add report!";
+            MessageBox.Show(message);
         }
 
     }

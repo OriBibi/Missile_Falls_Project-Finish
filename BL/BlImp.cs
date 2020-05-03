@@ -62,7 +62,7 @@ namespace BL
 
         #region Reports
 
-        public async void AddReport(Report report)
+        public async Task<Report> AddReportAsync(Report report)
         {
             List<Event> events = _dal.GetEvents(e => e.StartTime <= EntityFunctions.AddMinutes(report.Time,5).Value &&
                                   e.EndTime >= EntityFunctions.AddMinutes(report.Time, -5).Value).ToList();
@@ -114,7 +114,7 @@ namespace BL
 
             var res = await _dal.AddReportAsync(report);
             UpdateHits(report);
-
+            return res;
         }
 
         

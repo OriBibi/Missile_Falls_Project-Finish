@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 using BE;
 
@@ -20,7 +18,7 @@ namespace BL
         #endregion
 
         #region Report methods
-        void AddReport(Report report);
+        Task<Report> AddReportAsync(Report report);
         void RemoveReport(int id);
         void UpdateReport(Report report);
         List<Report> GetReports(Expression<Func<Report, bool>> predicate = null);
@@ -36,6 +34,5 @@ namespace BL
         List<Hit> GetHits();
         Hit GetHit(int id);
         #endregion
-
     }
 }
