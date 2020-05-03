@@ -32,17 +32,17 @@ namespace Missile_Falls_Project.Views
             InitializeComponent();
             MainViewModel = new MainViewModel();
             newReport.ReportFormVm = MainViewModel.NewReportFormVm;
-
+            newReport.Visibility =Visibility.Collapsed ;
             DataContext = MainViewModel;
 
 
-            IBl ibl = new BlImp();
+            //IBl ibl = new BlImp();
 
-            ibl.AddReport(new Report());
-            ibl.AddReport(new Report());
-            ibl.AddReport(new Report());
+            //ibl.AddReport(new Report());
+            //ibl.AddReport(new Report());
+            //ibl.AddReport(new Report());
 
-            ibl.GetReports();
+            //ibl.GetReports();
         }
 
         public void SelectedTabChange(object sender, RoutedEventArgs e)
@@ -52,20 +52,25 @@ namespace Missile_Falls_Project.Views
 
             if (index == 0)
             {
+                newReport.Visibility = Visibility.Collapsed;
 
-                newReport.Visibility = Visibility.Visible;
-               // MapView.Visibility = Visibility.Visible;
-               // GraphView.Visibility = Visibility.Collapsed;
-               // ChooseExplosionsView.Visibility = Visibility.Collapsed;
+                // MapView.Visibility = Visibility.Visible;
+                // GraphView.Visibility = Visibility.Collapsed;
+                // ChooseExplosionsView.Visibility = Visibility.Collapsed;
             }
             else if (index == 1)
             {
                 // GraphView.Visibility = Visibility.Visible;
                 // ChooseExplosionsView.Visibility = Visibility.Visible;            
-                newReport.Visibility = Visibility.Collapsed;
+                newReport.Visibility = Visibility.Visible;
+
                 //MapView.Visibility = Visibility.Collapsed;
             }
+            else if (index == 2)
+            {
+                newReport.Visibility = Visibility.Collapsed;
 
+            }
         }
     }
 }
