@@ -20,7 +20,7 @@ namespace Missile_Falls_Project.ViewModels
     public class MainViewModel : ViewModelBase
     {
 
-       
+
 
         private NewReportFormVM _newReportFormVm;
         public NewReportFormVM NewReportFormVm
@@ -33,7 +33,7 @@ namespace Missile_Falls_Project.ViewModels
             }
         }
 
-       
+
         #region Parameters
         private readonly IDialogService DialogService;
 
@@ -46,22 +46,16 @@ namespace Missile_Falls_Project.ViewModels
         }
         #endregion
 
-        #region Constructors
         public MainViewModel()
         {
             // DialogService is used to handle dialogs
             this.DialogService = new MvvmDialogs.DialogService();
             NewReportFormVm = new NewReportFormVM();
-           
+
         }
 
-        #endregion
 
-        #region Methods
 
-        #endregion
-
-        #region Commands
         public RelayCommand<object> SampleCmdWithArgument { get { return new RelayCommand<object>(OnSampleCmdWithArgument); } }
 
         public ICommand SaveAsCmd { get { return new RelayCommand(OnSaveAsTest, AlwaysFalse); } }
@@ -123,17 +117,13 @@ namespace Missile_Falls_Project.ViewModels
         private void OnShowAboutDialog()
         {
             Log.Info("Opening About dialog");
-            //AboutViewModel dialog = new AboutViewModel();
-           // var result = DialogService.ShowDialog<About>(this, dialog);
+            AboutViewModel dialog = new AboutViewModel();
+            var result = DialogService.ShowDialog<About>(this, dialog);
         }
         private void OnExitApp()
         {
             System.Windows.Application.Current.MainWindow.Close();
         }
-        #endregion
-
-        #region Events
-
-        #endregion
+       
     }
 }
