@@ -15,7 +15,7 @@ namespace Missile_Falls_Project.Models
 {
     public class MapModel : INotifyPropertyChanged
     {
-        private readonly IBl _bl = new FactoryBl().GetInstance();
+        private readonly IBl _bl = new BlImp();
 
         private List<Event> _events = new List<Event>();
         public List<Event> Events
@@ -64,9 +64,9 @@ namespace Missile_Falls_Project.Models
             return await _bl.GetReportsAsync(r => r.Event.Id == eventId);
         }
 
-        public async Task<IEnumerable<Explosion>> GetExplosions(int eventId)
+        public async Task<IEnumerable<Hit>> GetHits(int eventId)
         {
-            return await _bl.GetExplosions(e => e.Event.Id == eventId);
+            return await _bl.GetHits(e => e.Event.Id == eventId);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -77,6 +77,6 @@ namespace Missile_Falls_Project.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        
+
     }
 }

@@ -15,6 +15,7 @@ namespace Missile_Falls_Project.Models
     public class NewReportFormModel
     {
         private readonly IBl _bl = new BlImp();
+        public List<string> getInformationsFromUsers = new List<string>();
 
         public Report report { get; set; } =  new Report();
 
@@ -25,6 +26,7 @@ namespace Missile_Falls_Project.Models
             var message = res != null ?
               $"The Report: {res.Id}\nFrom: {res.ReporterName}\nOn: {res.Time} Saved Successfully!" :
               "Something went wrong when trying to add report!";
+            getInformationsFromUsers.Add(message);
             MessageBox.Show(message);
         }
 

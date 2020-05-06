@@ -24,9 +24,9 @@ namespace Missile_Falls_Project.ViewModels
             AddReportCommand = new RelayCommand<NewReportFormModel>(formModel =>
             {
                 if (reportModel.ReporterName == "" ||
-                reportModel.EventLocation == null ||
-                reportModel.NoiseIntensity == 0 ||
-                reportModel.NumOfExplosions == 0)
+                reportModel.Adress == null 
+                
+           )
                     return;
                 formModel.report = reportModel.Clone() as Report;
                 Report = new Report();
