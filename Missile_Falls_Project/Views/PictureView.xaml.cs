@@ -30,35 +30,46 @@ namespace Missile_Falls_Project.Views
     /// <summary>
     /// Interaction logic for PictureView.xaml
     /// </summary>
-    public partial class PictureView : UserControl, INotifyPropertyChanged
+    public partial class PictureView : UserControl
     {
 
+          public PictureView()
+        {
+            InitializeComponent();
+            
+        }
         public static readonly DependencyProperty PictureFormVmProperty = DependencyProperty.Register(
-            "PictureFormVm", typeof(NewPictureFormVM), typeof(PictureView), new PropertyMetadata(default(NewPictureFormVM)));
+            "PictureFormVm", typeof(NewPictureFormVm), typeof(PictureView), new PropertyMetadata(default(NewPictureFormVm)));
+        private readonly IBl _bl = new BlImp();
+        private List<Event> Events = new List<Event>();
 
-        public NewPictureFormVM PictureFormVm
+        public NewPictureFormVm PictureFormVm
         {
-            get { return (NewPictureFormVM)GetValue(PictureFormVmProperty); }
-            set { SetValue(PictureFormVmProperty, value); }
+            get { return (NewPictureFormVm)GetValue(PictureFormVmProperty); }
+            set { SetValue(PictureFormVmProperty, value);
+                value.PropertyChanged += PropertyChanged;
+                DataContext = PictureFormVm;
+                Events = _bl.GetEvents();
+                EventsCheckCB.DataContext = Events;
+            }
         }
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private void PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            Dispatcher.Invoke(() => DataContext = PictureFormVm);
         }
+        
 
 
 
 
         //*********************************************************************************8
 
-        public PictureView()
-        {
-            InitializeComponent();
-            DataContext = this;
+       // public PictureView()
+       // {
+        //    InitializeComponent();
+        //    DataContext = this;
 
-        }
+      //  }
         private List<Event> events = new List<Event>();
         public List<string> getInformationsFromUsers = new List<string>();
 
@@ -67,13 +78,7 @@ namespace Missile_Falls_Project.Views
             var reportShow = " ";
             return reportShow;
         }
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            foreach (var item in events)
-            {
-               //AddPicture(events.)
-            }
-        }
+        
 
         //************************************************************************************8
 

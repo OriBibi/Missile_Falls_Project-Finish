@@ -78,12 +78,10 @@ namespace Missile_Falls_Project.Views
                 newReport.Visibility = Visibility.Visible;
                 MapView.Visibility = Visibility.Visible;
 
-                //MapView.Visibility = Visibility.Collapsed;
             }
             else if (index == 2)
             {
                 picture.Visibility = Visibility.Collapsed;
-
                 newReport.Visibility = Visibility.Collapsed;
                 MapView.Visibility = Visibility.Collapsed;
 

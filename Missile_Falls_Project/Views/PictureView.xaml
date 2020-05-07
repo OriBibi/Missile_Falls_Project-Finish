@@ -3,10 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:viewModels="clr-namespace:Missile_Falls_Project.ViewModels"
         xmlns:local="clr-namespace:Missile_Falls_Project.Views"
         mc:Ignorable="d"
-        Loaded="UserControl_Loaded">
-        <Grid Background="#FF3A3A3A">
+         Background="#FF3A3A3A"
+    d:DesignHeight="1000" d:DesignWidth="1200" >
+    <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromRight}">
+        <!--<Grid Background="#FF3A3A3A">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
@@ -43,5 +48,23 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-        </Grid>
+        </Grid>-->
+        <materialDesign:Card  Margin="10" Padding="2">
+
+            <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <xctk:CheckComboBox 
+                    x:Name="EventsCheckCB" 
+                    materialDesign:HintAssist.Hint="Select Events To Display" 
+                    ItemsSource="{Binding Path=Events}"
+                    SelectedItemsOverride="{Binding Path=Events}"
+                    Command="{Binding Path=Events}" 
+                    Grid.Row="0" VerticalAlignment="Top" />
+        <Grid Grid.Row="1" Width="1200" Height="600"></Grid>
+    </Grid>
+        </materialDesign:Card>
+    </materialDesign:TransitioningContent>
 </UserControl>

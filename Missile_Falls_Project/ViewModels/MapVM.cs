@@ -41,7 +41,7 @@ namespace Missile_Falls_Project.ViewModels
                 var b = new ObservableCollection<Pushpin>(Hits.Select(e => new Pushpin()
                 {
                     Location = new Location(e.ApproxLatitude, e.ApproxLongitude),
-                    Background = Brushes.Red
+                    Background = Brushes.AliceBlue
                 }));
                 var c = a.ToList();
                 c.AddRange(b);
