@@ -32,8 +32,26 @@ namespace Missile_Falls_Project.ViewModels
                 NotifyPropertyChanged();
             }
         }
-
-
+        private MapVM _mapVm;
+        public MapVM MapVm
+        {
+            get { return _mapVm; }
+            set
+            {
+                _mapVm = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private NewPictureFormVm _PictureFormVm;
+        public NewPictureFormVm PictureFormVm
+        {
+            get { return _PictureFormVm; }
+            set
+            {
+                _PictureFormVm = value;
+                NotifyPropertyChanged();
+            }
+        }
         #region Parameters
         private readonly IDialogService DialogService;
 
@@ -50,6 +68,8 @@ namespace Missile_Falls_Project.ViewModels
         {
             // DialogService is used to handle dialogs
             this.DialogService = new MvvmDialogs.DialogService();
+            PictureFormVm = new NewPictureFormVm();
+            MapVm = new MapVM();
             NewReportFormVm = new NewReportFormVM();
 
         }

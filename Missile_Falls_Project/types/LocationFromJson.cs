@@ -72,7 +72,7 @@ namespace QuickType
         {
             return new Result()
             {
-                Title = (value as Report)?.EventLocation
+                Title = (value as Report)?.Adress
             };
         }
 
@@ -84,7 +84,7 @@ namespace QuickType
                 if (parameter is Report)
                 {
                     Report report = parameter as Report;
-                    report.EventLocation = result.ToString();
+                    report.Adress = result.ToString();
                     report.Latitude = result.Position[0];
                     report.Longitude = result.Position[1];
                     return report;
