@@ -26,36 +26,36 @@ namespace BL
 
             List<GeoCoordinate> clustersIdList = ClustersGenerator();
 
-            //bool isClustersChanged;
-            //var counter = 0;
-            //do
-            //{
-            //    isClustersChanged = false;
-            //    //for each report looking for the closest cluster 
-            //    for (int i = 0; i < ReportsList.Count; i++)
-            //    {
-            //        double min = ReportsList[i].GetCoordinate().GetDistanceTo(clustersIdList[0]);
-            //        ReportsList[i].ClusterId = 0;
+            bool isClustersChanged;
+            var counter = 0;
+            do
+            {
+                isClustersChanged = false;
+                //for each report looking for the closest cluster 
+                for (int i = 0; i < ReportsList.Count; i++)
+                {
+                    double min = ReportsList[i].GetCoordinate().GetDistanceTo(clustersIdList[0]);
+                    ReportsList[i].ClusterId = 0;
 
-            //        for (int j = 1; j < clustersIdList.Count; j++)
-            //        {
-            //            double temp = ReportsList[i].GetCoordinate().GetDistanceTo(clustersIdList[j]);
-            //            if (temp < min)
-            //            {
-            //                min = temp;
-            //                isClustersChanged = true;
-            //                ReportsList[i].ClusterId = j;
-            //            }
-            //        }
+                    for (int j = 1; j < clustersIdList.Count; j++)
+                    {
+                        double temp = ReportsList[i].GetCoordinate().GetDistanceTo(clustersIdList[j]);
+                        if (temp < min)
+                        {
+                            min = temp;
+                            isClustersChanged = true;
+                            ReportsList[i].ClusterId = j;
+                        }
+                    }
 
-            //    }
-            //    counter++;
-            //    clustersIdList = RecenterClusters(clustersIdList);
-            //    if (counter == 100)
-            //    {
-            //        break;
-            //    }
-            //} while (isClustersChanged);
+                }
+                counter++;
+                clustersIdList = RecenterClusters(clustersIdList);
+                if (counter == 100)
+                {
+                    break;
+                }
+            } while (isClustersChanged);
 
             return clustersIdList;
         }
@@ -103,7 +103,7 @@ namespace BL
             double minLongitude = ReportsList.Min(r => r.Longitude);
             double maxLongitude = ReportsList.Max(r => r.Longitude);
 
-            for (int i = 0; i < K; i++)
+            for (int i = 0; i <= K; i++)
             {
                 Random rand = new Random(i);
                 double latitude = minLatitude + rand.NextDouble() * (maxLatitude - minLatitude);

@@ -12,7 +12,7 @@
         xmlns:local="clr-namespace:Missile_Falls_Project"
        
         mc:Ignorable="d"
-         Height="450" Width="800" Background="#FF3A3A3A"
+         Height="auto" Width="auto" Background="#FF3A3A3A"
     TextElement.FontSize="18" d:DesignHeight="700" d:DesignWidth="600" Loaded="UserControl_Loaded">
     <Grid>
         <Grid>
