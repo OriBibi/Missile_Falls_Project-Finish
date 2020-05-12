@@ -30,6 +30,7 @@ namespace Missile_Falls_Project
         public MapView()
         {
             InitializeComponent();
+            ori();
             BingMap.Height = SystemParameters.PrimaryScreenHeight * 0.80;
             BingMap.Width = SystemParameters.PrimaryScreenWidth * 0.70;
         }
@@ -47,9 +48,15 @@ namespace Missile_Falls_Project
                 DataContext = MapVm;
             }
         }
+        private void ori()
+        {
+            MapVM v = new MapVM();
 
+            int a = v.Events.Count;
+        }
         private void PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+          
             Dispatcher.Invoke(() => DataContext = MapVm);
         }
     }

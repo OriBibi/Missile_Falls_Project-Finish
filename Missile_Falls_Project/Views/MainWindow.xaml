@@ -34,7 +34,7 @@
         <DockPanel Grid.Row="1"  >
             <local:NewReport x:Name="newReport" ReportFormVm="{Binding NewReportFormVm}"/>
             <Missile_Falls_Project:MapView x:Name="MapView" MapVm="{Binding MapVm}"   />
-            <local:PictureView x:Name="newPicture" />
+            <local:PictureView x:Name="newPicture" NewPictureFormVM="{Binding PictureFormVm}" />
         </DockPanel>
 
     </Grid>
