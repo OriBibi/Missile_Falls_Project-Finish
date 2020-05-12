@@ -33,6 +33,7 @@ namespace Missile_Falls_Project.Views
             MainViewModel = new MainViewModel();
             newReport.ReportFormVm = MainViewModel.NewReportFormVm;
             MapView.MapVm = MainViewModel.MapVm;
+            newPicture.NewPictureFormVM = MainViewModel.PictureFormVm;
             DataContext = MainViewModel;
             
             Closing += MainView_Closing;
