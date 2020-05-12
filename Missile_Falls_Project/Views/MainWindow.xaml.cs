@@ -32,27 +32,38 @@ namespace Missile_Falls_Project.Views
             InitializeComponent();
             MainViewModel = new MainViewModel();
             newReport.ReportFormVm = MainViewModel.NewReportFormVm;
-            newReport.Visibility =Visibility.Collapsed ;
+            MapView.MapVm = MainViewModel.MapVm;
             DataContext = MainViewModel;
+            
+            Closing += MainView_Closing;
 
-
-            IBl ibl = new BlImp();
-
-            ibl.AddReportAsync(new Report());
-            ibl.AddReportAsync(new Report());
-            ibl.AddReportAsync(new Report());
-
-            ibl.GetReports();
         }
+        private void MainView_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+            {
+                /*
+                    if (((MainViewModel)(this.DataContext)).Data.IsModified)
+                    if (!((MainViewModel)(this.DataContext)).PromptSaveBeforeExit())
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                */
+                Log.Info("Closing App");
+            }
+
+            
+        
 
         public void SelectedTabChange(object sender, RoutedEventArgs e)
         {
             int index = int.Parse(((Button)e.Source).Uid);
-            GridCursor.Margin = new Thickness((150 * index), 0, 0, 0);
+            PictureView picture = new PictureView();
 
             if (index == 0)
             {
+                picture.Visibility = Visibility.Visible;
                 newReport.Visibility = Visibility.Collapsed;
+                MapView.Visibility = Visibility.Collapsed;
 
                 // MapView.Visibility = Visibility.Visible;
                 // GraphView.Visibility = Visibility.Collapsed;
@@ -60,17 +71,23 @@ namespace Missile_Falls_Project.Views
             }
             else if (index == 1)
             {
+                picture.Visibility = Visibility.Collapsed;
+
                 // GraphView.Visibility = Visibility.Visible;
                 // ChooseExplosionsView.Visibility = Visibility.Visible;            
                 newReport.Visibility = Visibility.Visible;
+                MapView.Visibility = Visibility.Visible;
 
-                //MapView.Visibility = Visibility.Collapsed;
             }
             else if (index == 2)
             {
+                picture.Visibility = Visibility.Collapsed;
                 newReport.Visibility = Visibility.Collapsed;
+                MapView.Visibility = Visibility.Collapsed;
 
             }
         }
+
+        
     }
 }

@@ -11,7 +11,7 @@ namespace BE
     {
         public int Id { get; set; }
         public string ReporterName { get; set; }
-        public string EventLocation { get; set; }
+        public string Adress { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public DateTime Time { get; set; }
@@ -34,7 +34,7 @@ namespace BE
             {
                 Id = Id,
                 ReporterName = ReporterName,
-                EventLocation = EventLocation,
+                Adress = Adress,
                 Latitude = Latitude,
                 Longitude = Longitude,
                 Time = new DateTime(Time.Ticks),
