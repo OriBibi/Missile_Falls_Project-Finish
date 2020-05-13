@@ -42,6 +42,16 @@ namespace Missile_Falls_Project.ViewModels
                 NotifyPropertyChanged();
             }
         }
+        private GraphVM _GraphVm;
+        public GraphVM GraphVm
+        {
+            get { return _GraphVm; }
+            set
+            {
+                _GraphVm = value;
+                NotifyPropertyChanged();
+            }
+        }
         private NewPictureFormVm _PictureFormVm;
         public NewPictureFormVm PictureFormVm
         {
@@ -70,6 +80,7 @@ namespace Missile_Falls_Project.ViewModels
             this.DialogService = new MvvmDialogs.DialogService();
             PictureFormVm = new NewPictureFormVm();
             MapVm = new MapVM();
+            GraphVm = new GraphVM();
             NewReportFormVm = new NewReportFormVM();
 
         }

@@ -23,7 +23,7 @@ namespace Missile_Falls_Project.Controls
     /// </summary>
     public partial class GeoLocationAutoComplete : UserControl
     {
-
+        //Use Dependency Properties features and get automatically report feature changes.
         public static readonly DependencyProperty SelectedLocationProperty = DependencyProperty.Register(
             "SelectedLocation", typeof(Result), typeof(GeoLocationAutoComplete), new PropertyMetadata(default(Result)));
 

@@ -15,7 +15,7 @@
         mc:Ignorable="d"
           Background="#FF3A3A3A"
               TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-    TextElement.FontSize="18" d:DesignHeight="700" d:DesignWidth="600" Loaded="UserControl_Loaded">
+    TextElement.FontSize="18" d:DesignHeight="700" d:DesignWidth="600" >
     <UserControl.Resources>
         <quickType:ResultConverter x:Key="ResultConverter" />
     </UserControl.Resources>
@@ -60,11 +60,11 @@
                              Text="{Binding Report.NoiseIntensity, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
                              Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="1" />
                             <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" Grid.Column="0"
-                           Content="Num Of _Explosions:" />
+                           Content="Num Of _Hits:" />
                             <TextBox x:Name="NumOfhitsTextBox" 
-                             materialDesign:HintAssist.Hint="Enter Num Of _Explosions Here" Width="250"
+                             materialDesign:HintAssist.Hint="Enter Num Of _Hits Here" Width="250"
                              VerticalAlignment="Center"
-                             Text="{Binding Report.NumOfExplosions, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                             Text="{Binding Report.NumOfHits, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
                              Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="1" />
                             <Label VerticalAlignment="Center" Grid.Row="4" Margin="3" Grid.Column="0" Content="Time:" />
                             <xctk:DateTimePicker x:Name="TimeDatePicker" CalendarWidth="400"
