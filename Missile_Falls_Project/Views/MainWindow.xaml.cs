@@ -58,33 +58,33 @@ namespace Missile_Falls_Project.Views
         public void SelectedTabChange(object sender, RoutedEventArgs e)
         {
             int index = int.Parse(((Button)e.Source).Uid);
-            PictureView picture = new PictureView();
 
             if (index == 0)
             {
-                picture.Visibility = Visibility.Visible;
+                newPicture.Visibility = Visibility.Visible;
                 newReport.Visibility = Visibility.Collapsed;
                 MapView.Visibility = Visibility.Collapsed;
 
                 // MapView.Visibility = Visibility.Visible;
-                // GraphView.Visibility = Visibility.Collapsed;
+                newGraph.Visibility = Visibility.Collapsed;
                 // ChooseExplosionsView.Visibility = Visibility.Collapsed;
             }
             else if (index == 1)
             {
-                picture.Visibility = Visibility.Collapsed;
+                newPicture.Visibility = Visibility.Collapsed;
 
                 // GraphView.Visibility = Visibility.Visible;
-                // ChooseExplosionsView.Visibility = Visibility.Visible;            
+                 newGraph.Visibility = Visibility.Collapsed;            
                 newReport.Visibility = Visibility.Visible;
                 MapView.Visibility = Visibility.Visible;
 
             }
             else if (index == 2)
             {
-                picture.Visibility = Visibility.Collapsed;
+                newPicture.Visibility = Visibility.Collapsed;
                 newReport.Visibility = Visibility.Collapsed;
                 MapView.Visibility = Visibility.Collapsed;
+                newGraph.Visibility = Visibility.Visible;
 
             }
         }

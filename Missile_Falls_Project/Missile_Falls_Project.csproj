@@ -247,6 +247,9 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="types\LocationFromJson.cs" />
     <Compile Include="ViewModels\GeoLocationAutoCompleteVM.cs" />
+    <Compile Include="Views\GraphView.xaml.cs">
+      <DependentUpon>GraphView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PictureView.xaml.cs">
       <DependentUpon>PictureView.xaml</DependentUpon>
     </Compile>
@@ -262,6 +265,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Comments.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GraphView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

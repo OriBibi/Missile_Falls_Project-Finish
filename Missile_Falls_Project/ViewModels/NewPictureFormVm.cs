@@ -22,10 +22,10 @@ namespace Missile_Falls_Project.ViewModels
     public class NewPictureFormVm : INotifyPropertyChanged
     {
         public NewPictureFormModel NewPictureFormModel { get; set; }
-        public ObservableCollection<Event> Events
+        public ObservableCollection<Report> Events
         {
-            get { return new ObservableCollection<Event>(NewPictureFormModel.Events); }
-            set { NewPictureFormModel.Events = new List<Event>(value); }
+            get { return new ObservableCollection<Report>(NewPictureFormModel.Events); }
+            set { NewPictureFormModel.Events = new List<Report>(value); }
         }
         public NewPictureFormVm()
         {

@@ -17,8 +17,8 @@ namespace Missile_Falls_Project.Models
     {
         private readonly IBl _bl = new BlImp();
 
-        private List<Event> _events = new List<Event>();
-        public List<Event> Events
+        private List<Report> _events = new List<Report>();
+        public List<Report> Events
         {
             get { return _events; }
             set
@@ -49,11 +49,11 @@ namespace Missile_Falls_Project.Models
         {
             if (Events.Count == 0)
             {
-                Events = _bl.GetEvents();
+                Events = _bl.GetReports();
             }
             else
             {
-                var allEvents = await _bl.GetEventsAsync();
+                var allEvents = await _bl.GetReportsAsync();
                 Events.AddRange(allEvents.Where(e => !Events.Exists(_e => _e.Id == e.Id)));
                 OnPropertyChanged(nameof(Events));
             }
