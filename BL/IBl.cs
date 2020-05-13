@@ -26,10 +26,10 @@ namespace BL
         Report GetReport(int id);
         #endregion
 
-        #region Explosion methods
-        Task<Hit> AddHit(Hit explosion);
+        #region Hit methods
+        Task<Hit> AddHit(Hit Hit);
         void RemoveHit(int id);
-        void UpdateHit(Hit explosion);
+        void UpdateHit(Hit Hit);
         Task<List<Hit>> GetHits(Expression<Func<Hit, bool>> predicate = null);
         List<Hit> GetHits();
         Hit GetHit(int id);

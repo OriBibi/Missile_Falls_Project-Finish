@@ -17,7 +17,7 @@ namespace BE
         public double Longitude { get; set; }
         public DateTime Time { get; set; }
         public int NoiseIntensity { get; set; }
-        public int NumOfExplosions { get; set; }
+        public int NumOfHits { get; set; }
         public Event Event { get; set; }
         public int ClusterId { get; set; }
 
@@ -45,7 +45,7 @@ namespace BE
                 Longitude = Longitude,
                 Time = new DateTime(Time.Ticks),
                 NoiseIntensity = NoiseIntensity,
-                NumOfExplosions = NumOfExplosions,
+                NumOfHits = NumOfHits,
                 Event = Event?.Clone() as Event,
                 ClusterId = ClusterId,
             };

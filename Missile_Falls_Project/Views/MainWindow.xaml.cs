@@ -25,7 +25,6 @@ namespace Missile_Falls_Project.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static readonly ILog Log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         public MainViewModel MainViewModel { get; set; }
         public MainWindow()
         {
@@ -34,23 +33,12 @@ namespace Missile_Falls_Project.Views
             newReport.ReportFormVm = MainViewModel.NewReportFormVm;
             MapView.MapVm = MainViewModel.MapVm;
             newPicture.NewPictureFormVM = MainViewModel.PictureFormVm;
+            newGraph.GraphVm = MainViewModel.GraphVm;
             DataContext = MainViewModel;
             
-            Closing += MainView_Closing;
-
+            
         }
-        private void MainView_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-            {
-                /*
-                    if (((MainViewModel)(this.DataContext)).Data.IsModified)
-                    if (!((MainViewModel)(this.DataContext)).PromptSaveBeforeExit())
-                    {
-                        e.Cancel = true;
-                        return;
-                    }
-                */
-                Log.Info("Closing App");
-            }
+       
 
             
         
@@ -67,7 +55,7 @@ namespace Missile_Falls_Project.Views
 
                 // MapView.Visibility = Visibility.Visible;
                 newGraph.Visibility = Visibility.Collapsed;
-                // ChooseExplosionsView.Visibility = Visibility.Collapsed;
+                // ChooseHitsView.Visibility = Visibility.Collapsed;
             }
             else if (index == 1)
             {

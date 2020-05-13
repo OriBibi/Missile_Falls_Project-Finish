@@ -34,7 +34,7 @@ namespace Missile_Falls_Project
             BingMap.Height = SystemParameters.PrimaryScreenHeight * 0.80;
             BingMap.Width = SystemParameters.PrimaryScreenWidth * 0.70;
         }
-
+        //Use Dependency Properties features and get automatically report feature changes.
         public static readonly DependencyProperty MapVmProperty = DependencyProperty.Register(
             "MapVm", typeof(MapVM), typeof(MapView), new PropertyMetadata(default(MapVM)));
 

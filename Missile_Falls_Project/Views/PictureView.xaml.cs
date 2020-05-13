@@ -39,6 +39,7 @@ namespace Missile_Falls_Project.Views
            
             DataContext = this;
         }
+        //Use Dependency Properties features and get automatically report feature changes.
         public static readonly DependencyProperty NewPictureFormVmProperty = DependencyProperty.Register(
             "NewPictureFormVM", typeof(NewPictureFormVm), typeof(PictureView), new PropertyMetadata(default(NewPictureFormVm)));
 
