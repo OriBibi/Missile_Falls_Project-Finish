@@ -35,6 +35,7 @@
             <local:NewReport x:Name="newReport" ReportFormVm="{Binding NewReportFormVm}"/>
             <Missile_Falls_Project:MapView x:Name="MapView" MapVm="{Binding MapVm}"   />
             <local:PictureView x:Name="newPicture" NewPictureFormVM="{Binding PictureFormVm}" />
+            <local:GraphView x:Name="newGraph" />
         </DockPanel>
 
     </Grid>

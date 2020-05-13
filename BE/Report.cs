@@ -29,6 +29,10 @@ namespace BE
         {
             return new GeoCoordinate(Latitude, Longitude);
         }
+        public override string ToString()
+        {
+            return "Report number "+ Id + ":    Name: " + ReporterName+ "    In location: "+ Adress + "    Saved Successfully!";
+        }
         public object Clone()
         {
             return new Report()
