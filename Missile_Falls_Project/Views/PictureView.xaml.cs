@@ -36,6 +36,7 @@ namespace Missile_Falls_Project.Views
           public PictureView()
         {
             InitializeComponent();
+            f();
             
         }
         public static readonly DependencyProperty PictureFormVmProperty = DependencyProperty.Register(
@@ -120,7 +121,10 @@ namespace Missile_Falls_Project.Views
                 }
             }
 
-        
+        private void f()
+        {
+           Events =  _bl.GetEvents();
+        }
     }
 
     public class MyPicture

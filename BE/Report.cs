@@ -4,6 +4,7 @@ using System.Device.Location;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace BE
 {
@@ -19,6 +20,8 @@ namespace BE
         public int NumOfExplosions { get; set; }
         public Event Event { get; set; }
         public int ClusterId { get; set; }
+
+        public byte[] image { get; set; }
 
         public Report()
         {
@@ -42,6 +45,7 @@ namespace BE
                 NumOfExplosions = NumOfExplosions,
                 Event = Event?.Clone() as Event,
                 ClusterId = ClusterId,
+                image = image?.Clone() as byte[]
             };
         }
     }
