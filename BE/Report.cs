@@ -21,7 +21,8 @@ namespace BE
         public int NumOfHits { get; set; }
         public Event Event { get; set; }
         public int ClusterId { get; set; }
-
+         
+        public string info { get { return ToString(); } set {} }
         public byte[] image { get; set; }
 
         public Report()
@@ -34,7 +35,7 @@ namespace BE
         }
         public override string ToString()
         {
-            return "Report number "+ Id + ":    Name: " + ReporterName+ "    In location: "+ Adress + "    Saved Successfully!";
+            return "Reporter: " + ReporterName+ ", location: "+ Adress;
         }
         public object Clone()
         {

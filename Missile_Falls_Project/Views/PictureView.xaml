@@ -9,14 +9,14 @@
              xmlns:viewModels="clr-namespace:Missile_Falls_Project.ViewModels"
         xmlns:local="clr-namespace:Missile_Falls_Project.Views"
         mc:Ignorable="d"
-         
+         Background="#FF3A3A3A"
     d:DesignHeight="1000" d:DesignWidth="1200"  d:DataContext="{d:DesignInstance viewModels:NewPictureFormVm}">
 
-    <UserControl.Resources>
+    <!--<UserControl.Resources>
 
        
 
-        <!-- Pulse -->
+        --><!-- Pulse --><!--
         <Storyboard x:Key="Pulse" RepeatBehavior="Forever">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="PulseBox">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.15"/>
@@ -100,15 +100,17 @@
                 <Setter Property="Width" Value="200"/>
             </Style>
         </Grid.Resources>
-            <StackPanel Orientation="Horizontal">
+            --><!--<StackPanel Orientation="Horizontal">
                 <Image ></Image>
                 <ListView ItemsSource="{Binding Events}"   Grid.Row="1"  Name="ListView1"  >
             </ListView>
-        </StackPanel>
+        </StackPanel>--><!--
+            
+            
     </Grid>
 
     </Grid>
-    <!--<materialDesign:Card  Margin="10" Padding="2">
+    --><!--<materialDesign:Card  Margin="10" Padding="2">
 
             <Grid >
         <Grid.RowDefinitions>
@@ -126,4 +128,32 @@
     </Grid>
         </materialDesign:Card>
     </materialDesign:TransitioningContent>-->
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <ListView x:Name="imageList" Grid.Column="0">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="2" Width="auto"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical" >
+                        <Image Source="{Binding image}"  />
+                        <TextBlock   VerticalAlignment="Bottom">
+                            <TextBlock.Inlines>
+                                <Run FontWeight="Bold" FontSize="17" Text="{Binding info}"/>
+                            </TextBlock.Inlines>
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </UserControl>

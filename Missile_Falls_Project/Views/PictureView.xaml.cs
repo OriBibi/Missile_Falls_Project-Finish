@@ -23,7 +23,8 @@ using Missile_Falls_Project.Controls;
 using Missile_Falls_Project.ViewModels;
 
 using QuickType;
-
+using System.Drawing;
+using System.IO;
 
 namespace Missile_Falls_Project.Views
 {
@@ -52,6 +53,7 @@ namespace Missile_Falls_Project.Views
                 value.PropertyChanged += PropertyChanged;
 
                 DataContext = NewPictureFormVM;
+                f();
             }
         }
         private void PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -97,12 +99,40 @@ namespace Missile_Falls_Project.Views
                 }
             }
 
-        
+        private BitmapImage LoadImage(string filename)
+        {
+            return new BitmapImage(new Uri(filename));
+        }
+
+
+        private void f()
+        {
+            ObservableCollection<Report> reports = NewPictureFormVM.Events;
+            MyItem[] items = new MyItem[reports.Count];
+
+            Report r;
+            for (int i = 0; i < reports.Count; i++)
+            {
+                r = reports[i];
+                items[i] = new MyItem() { info = r.info, image = LoadImage(@"C:\Users\BenyK\OneDrive\Desktop\imgs\" + r.Id + ".png") };
+            }
+
+ 
+            imageList.ItemsSource = items;
+        }
+
+    }
+
+    public class MyItem
+    {
+        public string info { get; set; }
+
+        public BitmapImage image { get; set;}//hbjkbknjkjn
     }
 
     public class MyPicture
     {
-        public Uri Url { get; set; } // filename of image
+        public Uri Url { get; set; }
         public string Title { get; set; }
     }
 }

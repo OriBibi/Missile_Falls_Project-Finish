@@ -2,7 +2,8 @@
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Data.SqlTypes;
-    using System.Linq;
+using System.IO;
+using System.Linq;
     using System.Runtime.CompilerServices;
     using System.Text;
     using System.Threading.Tasks;
@@ -28,6 +29,7 @@ namespace Missile_Falls_Project.Views
     /// </summary>
     public partial class NewReport : UserControl, INotifyPropertyChanged
     {
+        private string imagePath; 
         //Use Dependency Properties features and get automatically report feature changes.
         public static readonly DependencyProperty ReportFormVmProperty = DependencyProperty.Register(
             "ReportFormVm", typeof(NewReportFormVM), typeof(NewReport), new PropertyMetadata(default(NewReportFormVM)));
@@ -64,9 +66,7 @@ namespace Missile_Falls_Project.Views
             SaveButton.IsEnabled = false;
             ReportFormVm.PropertyChanged += (sender, args) => InitForm();
             FileNameLabel.Content = " ";
-            BitmapImage bitmap = new BitmapImage();
-            
-            ImageViewer1.Source = bitmap;
+
             //AddressTextBox.CompleteVM = new GeoLocationAutoCompleteVM();
         }
 
@@ -104,6 +104,7 @@ namespace Missile_Falls_Project.Views
             dlg.Filter = "Image files (*.jpg)|*.jpg|All Files (*.*)|*.*";
             dlg.RestoreDirectory = true;
             var result = dlg.ShowDialog();
+            
             if (result == true)
             {
                 string selectedFileName = dlg.FileName;
@@ -113,6 +114,13 @@ namespace Missile_Falls_Project.Views
                 bitmap.UriSource = new Uri(selectedFileName);
                 bitmap.EndInit();
                 ImageViewer1.Source = bitmap;
+
+                imagePath = selectedFileName;
+
+                int id = new BL.BlImp().GetReports().Count+1;
+
+                if (imagePath != null)
+                    File.Copy(imagePath, @"C:\Users\BenyK\OneDrive\Desktop\imgs\" + id + ".png");
             }
         }
 
