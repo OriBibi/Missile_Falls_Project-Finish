@@ -88,14 +88,16 @@ namespace Missile_Falls_Project.Views
             }
         }
 
-        private void paste(IEnumerable<MyPicture> newPictures)
-        {
-            MyPictures.Clear();
-            foreach (var item in newPictures)
+            private void paste(IEnumerable<MyPicture> newPictures)
             {
-                MyPictures.Add(item);
+                MyPictures.Clear();
+                foreach (var item in newPictures)
+                {
+                    MyPictures.Add(item);
+                }
             }
-        }
+
+        
     }
 
     public class MyPicture
