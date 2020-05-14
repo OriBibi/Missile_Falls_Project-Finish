@@ -28,6 +28,7 @@ namespace Missile_Falls_Project.Views
     /// </summary>
     public partial class NewReport : UserControl, INotifyPropertyChanged
     {
+        //Use Dependency Properties features and get automatically report feature changes.
         public static readonly DependencyProperty ReportFormVmProperty = DependencyProperty.Register(
             "ReportFormVm", typeof(NewReportFormVM), typeof(NewReport), new PropertyMetadata(default(NewReportFormVM)));
 
@@ -42,18 +43,6 @@ namespace Missile_Falls_Project.Views
             InitializeComponent();
             InitForm();
         }
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            // Do not load your data at design time
-            // if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
-            // {
-            // 	//Load your data here and assign the result to the CollectionViewSource.
-            // 	System.Windows.Data.CollectionViewSource myCollectionViewSource = (System.Windows.Data.CollectionViewSource)this.Resources["Resource Key for CollectionViewSource"];
-            // 	myCollectionViewSource.Source = your data
-            // }
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

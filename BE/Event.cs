@@ -33,7 +33,7 @@ namespace BE
             {
                 Id = Id,
                 EndTime = new DateTime(EndTime.Ticks),
-                Hits = (from explosion in Hits select explosion?.Clone() as Hit).ToList(),
+                Hits = (from Hit in Hits select Hit?.Clone() as Hit).ToList(),
                 Reports = (from report in Reports select report?.Clone() as Report).ToList(),
             };
         }

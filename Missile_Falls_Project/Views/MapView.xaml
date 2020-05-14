@@ -26,14 +26,14 @@
                     Grid.Row="0"/>
                 <m:Map x:Name="BingMap" Grid.Row="1" CredentialsProvider="AvLBP9xROSW810MfywqZ2e0U_H-Ojra2K6vasg4LCAO1mZiScH6v1h4SHbXnXMqE"
                            Center="31.7962419,35.3154441" ZoomLevel="7.5" >
-                    <!--<m:MapItemsControl x:Name="MapItems" ItemsSource="{Binding LocationList}">
+                    <m:MapItemsControl x:Name="MapItems" ItemsSource="{Binding LocationList}">
                         <m:MapItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <m:Pushpin x:Name="Pushpin"  Location="{Binding Location}"
                                        d:DataContext="{d:DesignInstance m:Pushpin}" />
                             </DataTemplate>
                         </m:MapItemsControl.ItemTemplate>
-                    </m:MapItemsControl>-->
+                    </m:MapItemsControl>
                 </m:Map>
             </Grid>
         </materialDesign:Card>

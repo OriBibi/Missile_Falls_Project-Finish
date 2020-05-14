@@ -161,8 +161,8 @@ namespace BL
             }
             //_event.Reports = await _dal.GetReportsAsync((report => report.Event.Id == _event.Id));
             _event.Reports.Add(newReport);
-            int averageExplosions = (int)_event.Reports.Average(r => r.NumOfExplosions);
-            KMeans kMeans = new KMeans(_event.Reports, averageExplosions);
+            int averageHits = (int)_event.Reports.Average(r => r.NumOfHits);
+            KMeans kMeans = new KMeans(_event.Reports, averageHits);
             List<GeoCoordinate> clusters = kMeans.K_Means();
             foreach (GeoCoordinate g in clusters)
             {
@@ -180,9 +180,9 @@ namespace BL
 
         #region Hits
 
-        public Task<Hit> AddHit(Hit explosion)
+        public Task<Hit> AddHit(Hit Hit)
         {
-            return _dal.AddHitAsync(explosion);
+            return _dal.AddHitAsync(Hit);
         }
 
         public void RemoveHit(int id)

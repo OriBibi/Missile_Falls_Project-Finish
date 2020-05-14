@@ -12,12 +12,13 @@ namespace BE
     {
         public int Id { get; set; }
         public string ReporterName { get; set; }
+        public string EventLocation { get; set; }
         public string Adress { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public DateTime Time { get; set; }
         public int NoiseIntensity { get; set; }
-        public int NumOfExplosions { get; set; }
+        public int NumOfHits { get; set; }
         public Event Event { get; set; }
         public int ClusterId { get; set; }
 
@@ -31,18 +32,23 @@ namespace BE
         {
             return new GeoCoordinate(Latitude, Longitude);
         }
+        public override string ToString()
+        {
+            return "Report number "+ Id + ":    Name: " + ReporterName+ "    In location: "+ Adress + "    Saved Successfully!";
+        }
         public object Clone()
         {
             return new Report()
             {
                 Id = Id,
                 ReporterName = ReporterName,
+                EventLocation = EventLocation,
                 Adress = Adress,
                 Latitude = Latitude,
                 Longitude = Longitude,
                 Time = new DateTime(Time.Ticks),
                 NoiseIntensity = NoiseIntensity,
-                NumOfExplosions = NumOfExplosions,
+                NumOfHits = NumOfHits,
                 Event = Event?.Clone() as Event,
                 ClusterId = ClusterId,
                 image = image?.Clone() as byte[]

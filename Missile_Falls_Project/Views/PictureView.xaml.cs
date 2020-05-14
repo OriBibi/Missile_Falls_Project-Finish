@@ -33,84 +33,60 @@ namespace Missile_Falls_Project.Views
     public partial class PictureView : UserControl
     {
 
-          public PictureView()
+        public PictureView()
         {
             InitializeComponent();
-            f();
-            
+           
+            DataContext = this;
         }
-        public static readonly DependencyProperty PictureFormVmProperty = DependencyProperty.Register(
-            "PictureFormVm", typeof(NewPictureFormVm), typeof(PictureView), new PropertyMetadata(default(NewPictureFormVm)));
-        private readonly IBl _bl = new BlImp();
-        private List<Event> Events = new List<Event>();
+        //Use Dependency Properties features and get automatically report feature changes.
+        public static readonly DependencyProperty NewPictureFormVmProperty = DependencyProperty.Register(
+            "NewPictureFormVM", typeof(NewPictureFormVm), typeof(PictureView), new PropertyMetadata(default(NewPictureFormVm)));
 
-        public NewPictureFormVm PictureFormVm
+        public NewPictureFormVm NewPictureFormVM
         {
-            get { return (NewPictureFormVm)GetValue(PictureFormVmProperty); }
-            set { SetValue(PictureFormVmProperty, value);
+            get { return (NewPictureFormVm)GetValue(NewPictureFormVmProperty); }
+            set
+            {
+                SetValue(NewPictureFormVmProperty, value);
                 value.PropertyChanged += PropertyChanged;
-                DataContext = PictureFormVm;
-                Events = _bl.GetEvents();
-                EventsCheckCB.DataContext = Events;
+
+                DataContext = NewPictureFormVM;
             }
         }
         private void PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            Dispatcher.Invoke(() => DataContext = PictureFormVm);
+            
+            Dispatcher.Invoke(() => DataContext = NewPictureFormVM);
         }
-        
-
-
-
-
-        //*********************************************************************************8
-
-       // public PictureView()
-       // {
-        //    InitializeComponent();
-        //    DataContext = this;
-
-      //  }
-        private List<Event> events = new List<Event>();
-        public List<string> getInformationsFromUsers = new List<string>();
-
-        public string AddPicture(Report report)
-        {
-            var reportShow = " ";
-            return reportShow;
-        }
-        
-
-        //************************************************************************************8
-
-
         public ObservableCollection<MyPicture> MyPictures { get; }
-               = new ObservableCollection<MyPicture>();
-        private void Button_Click(object sender, RoutedEventArgs e)
-            {
-            Microsoft.Win32.OpenFileDialog op = new Microsoft.Win32.OpenFileDialog()
-                {
-                    Title = "Select picture(s)",
-                    Filter = "All supported graphics|" +
-                                "*.jpg;*.jpeg;*.png|" +
-                                "JPEG (*.jpg;*.jpeg)|" +
-                                "*.jpg;*.jpeg|" +
-                                "Portable Network Graphic (*.png)" +
-                                "|*.png",
-                    InitialDirectory = Environment.GetFolderPath(
-                        Environment.SpecialFolder.MyPictures),
-                    Multiselect = true
-                };
+            = new ObservableCollection<MyPicture>();
 
-                if (op.ShowDialog() == true)
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog op = new Microsoft.Win32.OpenFileDialog()
+            {
+                Title = "Select picture(s)",
+                Filter = "All supported graphics|" +
+                        "*.jpg;*.jpeg;*.png|" +
+                        "JPEG (*.jpg;*.jpeg)|" +
+                        "*.jpg;*.jpeg|" +
+                        "Portable Network Graphic (*.png)" +
+                        "|*.png",
+                InitialDirectory = Environment.GetFolderPath(
+                Environment.SpecialFolder.MyPictures),
+                Multiselect = true
+            };
+
+            if (op.ShowDialog() == true)
+            {
+                paste(op.FileNames.Select(f => new MyPicture
                 {
-                    paste(op.FileNames.Select(f => new MyPicture
-                    {
-                        Url = new Uri(f, UriKind.Absolute),
-                        Title = System.IO.Path.GetFileName(f)
-                    }));
-                }
+                    Url = new Uri(f, UriKind.Absolute),
+                    Title = System.IO.Path.GetFileName(f)
+                }));
             }
+        }
 
             private void paste(IEnumerable<MyPicture> newPictures)
             {
@@ -121,16 +97,12 @@ namespace Missile_Falls_Project.Views
                 }
             }
 
-        private void f()
-        {
-           Events =  _bl.GetEvents();
-        }
+        
     }
 
     public class MyPicture
-        {
-            public Uri Url { get; set; } // filename of image
-            public string Title { get; set; }
-        }
+    {
+        public Uri Url { get; set; } // filename of image
+        public string Title { get; set; }
     }
-
+}
