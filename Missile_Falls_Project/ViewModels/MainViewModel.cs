@@ -20,7 +20,7 @@ namespace Missile_Falls_Project.ViewModels
     public class MainViewModel : ViewModelBase
     {
 
-       
+
 
         private NewReportFormVM _newReportFormVm;
         public NewReportFormVM NewReportFormVm
@@ -32,8 +32,36 @@ namespace Missile_Falls_Project.ViewModels
                 NotifyPropertyChanged();
             }
         }
-
-       
+        private MapVM _mapVm;
+        public MapVM MapVm
+        {
+            get { return _mapVm; }
+            set
+            {
+                _mapVm = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private GraphVM _GraphVm;
+        public GraphVM GraphVm
+        {
+            get { return _GraphVm; }
+            set
+            {
+                _GraphVm = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private NewPictureFormVm _PictureFormVm;
+        public NewPictureFormVm PictureFormVm
+        {
+            get { return _PictureFormVm; }
+            set
+            {
+                _PictureFormVm = value;
+                NotifyPropertyChanged();
+            }
+        }
         #region Parameters
         private readonly IDialogService DialogService;
 
@@ -46,22 +74,19 @@ namespace Missile_Falls_Project.ViewModels
         }
         #endregion
 
-        #region Constructors
         public MainViewModel()
         {
             // DialogService is used to handle dialogs
             this.DialogService = new MvvmDialogs.DialogService();
+            PictureFormVm = new NewPictureFormVm();
+            MapVm = new MapVM();
+            GraphVm = new GraphVM();
             NewReportFormVm = new NewReportFormVM();
-           
+
         }
 
-        #endregion
 
-        #region Methods
 
-        #endregion
-
-        #region Commands
         public RelayCommand<object> SampleCmdWithArgument { get { return new RelayCommand<object>(OnSampleCmdWithArgument); } }
 
         public ICommand SaveAsCmd { get { return new RelayCommand(OnSaveAsTest, AlwaysFalse); } }
@@ -123,17 +148,13 @@ namespace Missile_Falls_Project.ViewModels
         private void OnShowAboutDialog()
         {
             Log.Info("Opening About dialog");
-            //AboutViewModel dialog = new AboutViewModel();
-           // var result = DialogService.ShowDialog<About>(this, dialog);
+            AboutViewModel dialog = new AboutViewModel();
+            var result = DialogService.ShowDialog<About>(this, dialog);
         }
         private void OnExitApp()
         {
             System.Windows.Application.Current.MainWindow.Close();
         }
-        #endregion
-
-        #region Events
-
-        #endregion
+       
     }
 }

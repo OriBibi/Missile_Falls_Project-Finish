@@ -9,38 +9,39 @@
         md:DialogServiceViews.IsRegistered="True"
         xmlns:local="clr-namespace:Missile_Falls_Project.Views"
         xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
-
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowState="Maximized"
         mc:Ignorable="d"
-        Title="Missile Falls Project" Height="450" Width="800">
+        Title="Missile Falls Project"  d:DataContext="{d:DesignInstance localVMs:MainViewModel }" >
 
-    <Window.Resources>
-        <!-- Insert here your Data Templates -->
-        <DataTemplate x:Key="SampleTemplate">
-            <StackPanel/>
-        </DataTemplate>
+    
+    <Grid >
 
-    </Window.Resources>
-        <DockPanel  d:DataContext="{d:DesignInstance localVMs:MainViewModel }">
-            <Grid DockPanel.Dock="Top"  >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Top">
-                    <Button Uid="0" Width="398" Content="REPORT" Height="40" Background="#FF3A3A3A" BorderBrush="{x:Null}" Click="SelectedTabChange"/>
-                    <Button Uid="1" Width="398" Content="ANALYTIC" Height="40" Background="#FF3A3A3A" BorderBrush="{x:Null}"  Click="SelectedTabChange"/>
-                </StackPanel>
-                <Grid Grid.Column="0" x:Name="GridCursor" Width="150" Height="5" VerticalAlignment="Bottom"  HorizontalAlignment="Left"/>
-                
-                <MenuItem Header="About" Command="{Binding ShowAboutDialogCmd}"/>
-       
-            </Grid>
-
-        <DockPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"  />
+            <RowDefinition  />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" >
+            <Grid.ColumnDefinitions >
+            <ColumnDefinition  />
+            <ColumnDefinition  />
+            <ColumnDefinition  />
+        </Grid.ColumnDefinitions>
+            <Button Uid="0" Grid.Row="0" Grid.Column="0"   Content="REAL-TIME FALLS"  Height="40" Background="#FF3A3A3A"   Click="SelectedTabChange"/>
+            <Button Uid="1" Grid.Row="0" Grid.Column="1" Content="REPORT" Height="40" Background="#FF3A3A3A"   Click="SelectedTabChange"/>
+            <Button Uid="2" Grid.Row="0" Grid.Column="2" Content="ANALYTIC" Height="40" Background="#FF3A3A3A"   Click="SelectedTabChange"/>
+           </Grid >
+        <DockPanel Grid.Row="1"  >
             <local:NewReport x:Name="newReport" ReportFormVm="{Binding NewReportFormVm}"/>
-
+            <Missile_Falls_Project:MapView x:Name="MapView" MapVm="{Binding MapVm}"   />
+            <local:PictureView x:Name="newPicture" NewPictureFormVM="{Binding PictureFormVm}" />
+            <Missile_Falls_Project:GraphView x:Name="newGraph" GraphVm="{Binding GraphVm}" />
         </DockPanel>
-    </DockPanel>
+
+    </Grid>
+
+        
+
         
     
 </Window>

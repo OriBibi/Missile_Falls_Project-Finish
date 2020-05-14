@@ -4,6 +4,7 @@ using System.Device.Location;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace BE
 {
@@ -12,13 +13,17 @@ namespace BE
         public int Id { get; set; }
         public string ReporterName { get; set; }
         public string EventLocation { get; set; }
+        public string Adress { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public DateTime Time { get; set; }
         public int NoiseIntensity { get; set; }
-        public int NumOfExplosions { get; set; }
+        public int NumOfHits { get; set; }
         public Event Event { get; set; }
         public int ClusterId { get; set; }
+         
+        public string info { get { return ToString(); } set {} }
+        public byte[] image { get; set; }
 
         public Report()
         {
@@ -28,6 +33,10 @@ namespace BE
         {
             return new GeoCoordinate(Latitude, Longitude);
         }
+        public override string ToString()
+        {
+            return "Reporter: " + ReporterName+ ", location: "+ Adress;
+        }
         public object Clone()
         {
             return new Report()
@@ -35,13 +44,15 @@ namespace BE
                 Id = Id,
                 ReporterName = ReporterName,
                 EventLocation = EventLocation,
+                Adress = Adress,
                 Latitude = Latitude,
                 Longitude = Longitude,
                 Time = new DateTime(Time.Ticks),
                 NoiseIntensity = NoiseIntensity,
-                NumOfExplosions = NumOfExplosions,
+                NumOfHits = NumOfHits,
                 Event = Event?.Clone() as Event,
                 ClusterId = ClusterId,
+                image = image?.Clone() as byte[]
             };
         }
     }

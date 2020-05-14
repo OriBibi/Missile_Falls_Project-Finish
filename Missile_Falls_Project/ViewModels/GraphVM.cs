@@ -20,7 +20,7 @@ namespace Missile_Falls_Project.ViewModels
         public GraphModel GraphModel { get; set; }
         public ObservableCollection<string> EventsId { get; set; }
         public ObservableCollection<Report> Reports { get; set; }
-        public ObservableCollection<Explosion> Explosions { get; set; }
+        public ObservableCollection<Hit> Hits { get; set; }
 
         public RelayCommand<string> SelectedEventsComand { get; set; }
         public string Title { get; private set; }
@@ -29,11 +29,11 @@ namespace Missile_Falls_Project.ViewModels
         {
             //get
             //{
-            //    return (from explosion in GraphModel.Explosions
-            //            select new DataPoint(GraphModel.Explosions.IndexOf(explosion),
-            //                new GeoCoordinate(explosion.ApproxLatitude, explosion.ApproxLongitude)
+            //    return (from Hit in GraphModel.Hits
+            //            select new DataPoint(GraphModel.Hits.IndexOf(Hit),
+            //                new GeoCoordinate(Hit.ApproxLatitude, Hit.ApproxLongitude)
             //                .GetDistanceTo(
-            //                    new GeoCoordinate(explosion.RealLatitude, explosion.RealLongitude)
+            //                    new GeoCoordinate(Hit.RealLatitude, Hit.RealLongitude)
             //                    ))).ToList();
             //}
             get;
@@ -57,19 +57,19 @@ namespace Missile_Falls_Project.ViewModels
             };
 
             SetEventsIds();
-            Explosions = new ObservableCollection<Explosion>(GraphModel.Explosions);
+            Hits = new ObservableCollection<Hit>(GraphModel.Hits);
             var points = new List<DataPoint>();
-            foreach (var explosion in Explosions)
+            foreach (var Hit in Hits)
             {
-                if (explosion.RealLatitude == 0)
+                if (Hit.RealLatitude == 0)
                 {
-                    points.Add(new DataPoint(Explosions.IndexOf(explosion), 0));
+                    points.Add(new DataPoint(Hits.IndexOf(Hit), 0));
                 }
                 else
                 {
-                    var d1 = new GeoCoordinate(explosion.ApproxLatitude, explosion.ApproxLongitude);
-                    var d2 = new GeoCoordinate(explosion.RealLatitude, explosion.RealLongitude);
-                    points.Add(new DataPoint(Explosions.IndexOf(explosion), d1.GetDistanceTo(d2)));
+                    var d1 = new GeoCoordinate(Hit.ApproxLatitude, Hit.ApproxLongitude);
+                    var d2 = new GeoCoordinate(Hit.RealLatitude, Hit.RealLongitude);
+                    points.Add(new DataPoint(Hits.IndexOf(Hit), d1.GetDistanceTo(d2)));
                 }
             }
             Points = points;

@@ -12,24 +12,34 @@ using System.Threading.Tasks;
 
 namespace Missile_Falls_Project.Models
 {
-    public class ChooseExplosionsModel : INotifyPropertyChanged
+    public class GraphModel : INotifyPropertyChanged
     {
-        private readonly IBl _bl = new FactoryBl().GetInstance();
+        private readonly IBl _bl = new BlImp();
 
-        private List<Event> _Events = new List<Event>();
+        private List<Event> _events = new List<Event>();
         public List<Event> Events
         {
-            get { return _Events; }
+            get { return _events; }
             set
             {
-                _Events = value;
+                _events = value;
                 OnPropertyChanged();
             }
         }
-
-        public ChooseExplosionsModel()
+        private List<Hit> _Hits = new List<Hit>();
+        public List<Hit> Hits
+        {
+            get { return _Hits; }
+            set
+            {
+                _Hits = value;
+                OnPropertyChanged();
+            }
+        }
+        public GraphModel()
         {
             GetEvents();
+            GetHits();
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += checkNewEvents;
             worker.RunWorkerAsync();
@@ -40,22 +50,24 @@ namespace Missile_Falls_Project.Models
             while (true)
             {
                 GetEvents();
+                GetHits();
                 Thread.Sleep(5000);
             }
         }
 
-
-        ICollection<Explosion> getExplosionsFromEvent(Event _event)
+        private void GetHits()
         {
-            return _event.Explosions;
+            Hits = _bl.GetHits();
         }
 
         public void GetEvents()
         {
-            if (_bl.GetEvents().Count > 0)
-            {
-                Events = _bl.GetEvents();
-            }
+            Events = _bl.GetEvents();
+        }
+
+        public async Task<IEnumerable<Report>> GetReports(int eventId)
+        {
+            return await _bl.GetReportsAsync(r => r.Event.Id == eventId);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -65,6 +77,5 @@ namespace Missile_Falls_Project.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
     }
 }

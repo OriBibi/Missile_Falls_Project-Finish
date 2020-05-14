@@ -1,33 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data.SqlTypes;
+﻿    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data.SqlTypes;
+using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using BE;
-using Missile_Falls_Project.Controls;
-using Missile_Falls_Project.ViewModels;
+    using System.Runtime.CompilerServices;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Data;
+    using System.Windows.Documents;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using System.Windows.Media.Imaging;
+    using System.Windows.Navigation;
+    using System.Windows.Shapes;
+    using BE;
+    using Missile_Falls_Project.Controls;
+    using Missile_Falls_Project.ViewModels;
 
-using QuickType;
+    using QuickType;
 
 namespace Missile_Falls_Project.Views
 {
     /// <summary>
-    /// Interaction logic for NewReportFormView.xaml
+    /// Interaction logic for NewReport.xaml
     /// </summary>
     public partial class NewReport : UserControl, INotifyPropertyChanged
     {
+        private string imagePath; 
+        //Use Dependency Properties features and get automatically report feature changes.
         public static readonly DependencyProperty ReportFormVmProperty = DependencyProperty.Register(
             "ReportFormVm", typeof(NewReportFormVM), typeof(NewReport), new PropertyMetadata(default(NewReportFormVM)));
 
@@ -42,18 +45,6 @@ namespace Missile_Falls_Project.Views
             InitializeComponent();
             InitForm();
         }
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            // Do not load your data at design time
-            // if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
-            // {
-            // 	//Load your data here and assign the result to the CollectionViewSource.
-            // 	System.Windows.Data.CollectionViewSource myCollectionViewSource = (System.Windows.Data.CollectionViewSource)this.Resources["Resource Key for CollectionViewSource"];
-            // 	myCollectionViewSource.Source = your data
-            // }
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -74,6 +65,8 @@ namespace Missile_Falls_Project.Views
             SaveButton.CommandParameter = ReportFormVm.FormModel;
             SaveButton.IsEnabled = false;
             ReportFormVm.PropertyChanged += (sender, args) => InitForm();
+            FileNameLabel.Content = " ";
+
             //AddressTextBox.CompleteVM = new GeoLocationAutoCompleteVM();
         }
 
@@ -81,19 +74,59 @@ namespace Missile_Falls_Project.Views
         {
             int _;
             SaveButton.IsEnabled = AddressTextBox.SelectedLocation != null &&
-                                   NameTextBox.Text != "" &&
-                                   !(NoiseIntensityTextBox.Text == "0" ||
-                                   !int.TryParse(NoiseIntensityTextBox.Text, out _)) &&
-                                   !(NumOfExplosionsTextBox.Text == "0" ||
-                                   !int.TryParse(NumOfExplosionsTextBox.Text, out _));
+                                   NameTextBox.Text != "" ;
         }
 
         private void AddressTextBox_OnSelectedChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!(sender is AutoCompleteBox) || e.AddedItems.Count == 0) return;
-            (DataContext as NewReportFormVM).Report.EventLocation = ((Result)e.AddedItems[0]).Title;
+            (DataContext as NewReportFormVM).Report.Adress = ((Result)e.AddedItems[0]).Title;
             (DataContext as NewReportFormVM).Report.Latitude = ((Result)e.AddedItems[0])?.Position?[0] ?? 0;
             (DataContext as NewReportFormVM).Report.Longitude = ((Result)e.AddedItems[0])?.Position?[1] ?? 0;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.google.com/maps/@32.226743,34.747009,9z?hl=iw");
+        }
+
+        private void AddComments(object sender, EventArgs e)
+        {
+            Comments comments = new Comments();
+            comments.Show();
+        }
+
+        private void AddPicture(object sender, EventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+            dlg.InitialDirectory = "c:\\";
+            dlg.Filter = "Image files (*.jpg)|*.jpg|All Files (*.*)|*.*";
+            dlg.RestoreDirectory = true;
+            var result = dlg.ShowDialog();
+            
+            if (result == true)
+            {
+                string selectedFileName = dlg.FileName;
+                FileNameLabel.Content = selectedFileName;
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(selectedFileName);
+                bitmap.EndInit();
+                ImageViewer1.Source = bitmap;
+
+                imagePath = selectedFileName;
+
+                int id = new BL.BlImp().GetReports().Count+1;
+
+                if (imagePath != null)
+                    File.Copy(imagePath, @"C:\Users\BenyK\OneDrive\Desktop\imgs\" + id + ".png");
+            }
+        }
+
+        private void ActionButton_Loaded_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

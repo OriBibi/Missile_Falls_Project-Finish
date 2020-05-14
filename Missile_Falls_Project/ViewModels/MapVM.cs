@@ -38,10 +38,10 @@ namespace Missile_Falls_Project.ViewModels
                     {
                         Location = new Location(r.Latitude, r.Longitude)
                     }));
-                var b = new ObservableCollection<Pushpin>(Explosions.Select(e => new Pushpin()
+                var b = new ObservableCollection<Pushpin>(Hits.Select(e => new Pushpin()
                 {
                     Location = new Location(e.ApproxLatitude, e.ApproxLongitude),
-                    Background = Brushes.Red 
+                    Background = Brushes.AliceBlue
                 }));
                 var c = a.ToList();
                 c.AddRange(b);
@@ -51,7 +51,7 @@ namespace Missile_Falls_Project.ViewModels
 
         public ObservableCollection<Report> Reports { get; set; }
 
-        public ObservableCollection<Explosion> Explosions { get; set; }
+        public ObservableCollection<Hit> Hits { get; set; }
 
         public RelayCommand<Event> SelectedEventsComand { get; set; }
 
@@ -64,7 +64,7 @@ namespace Missile_Falls_Project.ViewModels
             };
             SelectedEvents = new ObservableCollection<Event>();
             Reports = new ObservableCollection<Report>();
-            Explosions = new ObservableCollection<Explosion>();
+            Hits = new ObservableCollection<Hit>();
 
             Events.CollectionChanged += (sender, args) =>
             {
@@ -99,25 +99,25 @@ namespace Missile_Falls_Project.ViewModels
                     if (report.Event.Id == _event.Id)
                         Reports.Remove(report);
                 }
-                foreach (var explosion in Explosions.ToArray())
+                foreach (var Hit in Hits.ToArray())
                 {
-                    if (explosion.Event.Id == _event.Id)
+                    if (Hit.Event.Id == _event.Id)
                     {
-                        Explosions.Remove(explosion);
+                        Hits.Remove(Hit);
                     }
                 }
             }
             else
             {
                 var reports = await MapModel.GetReports(_event.Id);
-                var explosions = await MapModel.GetExplosions(_event.Id);
+                var hits = await MapModel.GetHits(_event.Id);
                 foreach (var report in reports)
                 {
                     Reports.Add(report);
                 }
-                foreach (var explosion in explosions)
+                foreach (var hit in hits)
                 {
-                    Explosions.Add(explosion);
+                    Hits.Add(hit);
                 }
             }
             OnPropertyChanged(nameof(LocationList));

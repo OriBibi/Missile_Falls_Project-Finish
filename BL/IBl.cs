@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using BE;
 
@@ -13,28 +12,27 @@ namespace BL
         void AddEvent(Event _event);
         void RemoveEvent(int id);
         void UpdateEvent(Event _event);
-        List<Event> GetEvents(Predicate<Event> predicate = null);
-        Task<List<Event>> GetEventsAsync(Predicate<Event> predicate = null);
+        List<Event> GetEvents(Expression<Func<Event, bool>> predicate = null);
+        Task<List<Event>> GetEventsAsync(Expression<Func<Event, bool>> predicate = null);
         Event GetEvent(int id);
         #endregion
 
         #region Report methods
-        void AddReport(Report report);
+        Task<Report> AddReportAsync(Report report);
         void RemoveReport(int id);
         void UpdateReport(Report report);
-        List<Report> GetReports(Predicate<Report> predicate = null);
-        Task<List<Report>> GetReportsAsync(Predicate<Report> predicate = null);
+        List<Report> GetReports(Expression<Func<Report, bool>> predicate = null);
+        Task<List<Report>> GetReportsAsync(Expression<Func<Report, bool>> predicate = null);
         Report GetReport(int id);
         #endregion
 
-        #region Explosion methods
-        Task<Hit> AddHit(Hit explosion);
+        #region Hit methods
+        Task<Hit> AddHit(Hit Hit);
         void RemoveHit(int id);
-        void UpdateHit(Hit explosion);
-        Task<List<Hit>> GetHits(Predicate<Hit> predicate = null);
-        List<Hit> GetHitsSync();
+        void UpdateHit(Hit Hit);
+        Task<List<Hit>> GetHits(Expression<Func<Hit, bool>> predicate = null);
+        List<Hit> GetHits();
         Hit GetHit(int id);
         #endregion
-
     }
 }

@@ -13,12 +13,12 @@ using Missile_Falls_Project.Annotations;
 
 namespace Missile_Falls_Project.Models
 {
-    public class MapModel : INotifyPropertyChanged
+    public class NewPictureFormModel : INotifyPropertyChanged
     {
-        private readonly IBl _bl = new FactoryBl().GetInstance();
+        private readonly IBl _bl = new BlImp();
 
-        private List<Event> _events = new List<Event>();
-        public List<Event> Events
+        private List<Report> _events = new List<Report>();
+        public List<Report> Events
         {
             get { return _events; }
             set
@@ -28,7 +28,7 @@ namespace Missile_Falls_Project.Models
             }
         }
 
-        public MapModel()
+        public NewPictureFormModel()
         {
             GetEvents();
             BackgroundWorker worker = new BackgroundWorker();
@@ -49,11 +49,11 @@ namespace Missile_Falls_Project.Models
         {
             if (Events.Count == 0)
             {
-                Events = _bl.GetEvents();
+                Events = _bl.GetReports();
             }
             else
             {
-                var allEvents = await _bl.GetEventsAsync();
+                var allEvents = await _bl.GetReportsAsync();
                 Events.AddRange(allEvents.Where(e => !Events.Exists(_e => _e.Id == e.Id)));
                 OnPropertyChanged(nameof(Events));
             }
@@ -64,9 +64,9 @@ namespace Missile_Falls_Project.Models
             return await _bl.GetReportsAsync(r => r.Event.Id == eventId);
         }
 
-        public async Task<IEnumerable<Explosion>> GetExplosions(int eventId)
+        public async Task<IEnumerable<Hit>> GetHits(int eventId)
         {
-            return await _bl.GetExplosions(e => e.Event.Id == eventId);
+            return await _bl.GetHits(e => e.Event.Id == eventId);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -77,6 +77,6 @@ namespace Missile_Falls_Project.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        
+
     }
 }

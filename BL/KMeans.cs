@@ -103,7 +103,7 @@ namespace BL
             double minLongitude = ReportsList.Min(r => r.Longitude);
             double maxLongitude = ReportsList.Max(r => r.Longitude);
 
-            for (int i = 0; i < K; i++)
+            for (int i = 0; i <= K; i++)
             {
                 Random rand = new Random(i);
                 double latitude = minLatitude + rand.NextDouble() * (maxLatitude - minLatitude);

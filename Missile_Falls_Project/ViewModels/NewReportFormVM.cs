@@ -15,22 +15,20 @@ using QuickType;
 
 namespace Missile_Falls_Project.ViewModels
 {
-    public class NewReportFormVM 
+    public class NewReportFormVM : INotifyPropertyChanged
     {
        public NewReportFormVM()
         {
             FormModel = new NewReportFormModel();
-            reportModel = FormModel.Report.Clone() as Report;
+            reportModel = FormModel.report.Clone() as Report;
             AddReportCommand = new RelayCommand<NewReportFormModel>(formModel =>
             {
-                if (reportModel.ReporterName == "" ||
-                reportModel.EventLocation == null ||
-                reportModel.NoiseIntensity == 0 ||
-                reportModel.NumOfExplosions == 0)
+                if (reportModel.ReporterName == "" || reportModel.Adress == null)
                     return;
-                formModel.Report = reportModel.Clone() as Report;
+                
+                formModel.report = reportModel.Clone() as Report;
                 Report = new Report();
-                formModel.AddReport();
+                formModel.AddReportAsync();
             },
                 //if have more condition to add report 
                 report =>

@@ -12,7 +12,7 @@
              d:DesignHeight="1000" d:DesignWidth="1200" d:DataContext="{d:DesignInstance viewModels:MapVM}">
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromRight}">
         <materialDesign:Card  Margin="10" Padding="2">
-            <Grid>
+            <Grid >
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition Height="Auto"/>
@@ -24,7 +24,7 @@
                     SelectedItemsOverride="{Binding SelectedEvents}"
                     Command="{Binding SelectedEventsComand}" 
                     Grid.Row="0"/>
-                <m:Map x:Name="BingMap" Grid.Row="1" CredentialsProvider="AgK_gAfXEpEf0Fp0EZj3Wh8n3U6lR954Mfo6Gh_tVz2TebjjwhNkYf1I0V4CEJwk"
+                <m:Map x:Name="BingMap" Grid.Row="1" CredentialsProvider="AvLBP9xROSW810MfywqZ2e0U_H-Ojra2K6vasg4LCAO1mZiScH6v1h4SHbXnXMqE"
                            Center="31.7962419,35.3154441" ZoomLevel="7.5" >
                     <m:MapItemsControl x:Name="MapItems" ItemsSource="{Binding LocationList}">
                         <m:MapItemsControl.ItemTemplate>

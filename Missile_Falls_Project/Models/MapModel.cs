@@ -1,6 +1,5 @@
 ﻿using BE;
 using BL;
-using Missile_Falls_Project.Annotations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,12 +8,14 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Threading;
+using Missile_Falls_Project.Annotations;
 
 namespace Missile_Falls_Project.Models
 {
-    public class GraphModel : INotifyPropertyChanged
+    public class MapModel : INotifyPropertyChanged
     {
-        private readonly IBl _bl = new FactoryBl().GetInstance();
+        private readonly IBl _bl = new BlImp();
 
         private List<Event> _events = new List<Event>();
         public List<Event> Events
@@ -26,48 +27,46 @@ namespace Missile_Falls_Project.Models
                 OnPropertyChanged();
             }
         }
-        private List<Explosion> _explosions = new List<Explosion>();
-        public List<Explosion> Explosions
-        {
-            get { return _explosions; }
-            set
-            {
-                _explosions = value;
-                OnPropertyChanged();
-            }
-        }
-        public GraphModel()
+
+        public MapModel()
         {
             GetEvents();
-            GetExplosions();
             BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += checkNewEvents;
+            worker.DoWork += CheckNewEvents;
             worker.RunWorkerAsync();
         }
 
-        private void checkNewEvents(object sender, DoWorkEventArgs doWorkEventArgs)
+        private void CheckNewEvents(object sender, DoWorkEventArgs doWorkEventArgs)
         {
             while (true)
             {
                 GetEvents();
-                GetExplosions();
                 Thread.Sleep(5000);
             }
         }
 
-        private void GetExplosions()
+        public async void GetEvents()
         {
-            Explosions = _bl.GetExplosionsSync();
-        }
-
-        public void GetEvents()
-        {
-            Events = _bl.GetEvents();
+            if (Events.Count == 0)
+            {
+                Events = _bl.GetEvents();
+            }
+            else
+            {
+                var allEvents = await _bl.GetEventsAsync();
+                Events.AddRange(allEvents.Where(e => !Events.Exists(_e => _e.Id == e.Id)));
+                OnPropertyChanged(nameof(Events));
+            }
         }
 
         public async Task<IEnumerable<Report>> GetReports(int eventId)
         {
             return await _bl.GetReportsAsync(r => r.Event.Id == eventId);
+        }
+
+        public async Task<IEnumerable<Hit>> GetHits(int eventId)
+        {
+            return await _bl.GetHits(e => e.Event.Id == eventId);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -77,5 +76,7 @@ namespace Missile_Falls_Project.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+
     }
 }
