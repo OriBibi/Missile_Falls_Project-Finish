@@ -120,7 +120,7 @@ namespace Missile_Falls_Project.Views
                 int id = new BL.BlImp().GetReports().Count+1;
 
                 if (imagePath != null)
-                    File.Copy(imagePath, @"C:\Users\BenyK\OneDrive\Desktop\imgs\" + id + ".png");
+                    File.Copy(imagePath, @"C:\Users\OriBibi\Desktop\imgs\" + id + ".png");
             }
         }
 

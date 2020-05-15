@@ -114,7 +114,7 @@ namespace Missile_Falls_Project.Views
             for (int i = 0; i < reports.Count; i++)
             {
                 r = reports[i];
-                items[i] = new MyItem() { info = r.info, image = LoadImage(@"C:\Users\BenyK\OneDrive\Desktop\imgs\" + r.Id + ".png") };
+                items[i] = new MyItem() { info = r.info, image = LoadImage(@"C:\Users\OriBibi\Desktop\imgs\" + r.Id + ".png") };
             }
 
  
