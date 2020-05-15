@@ -22,7 +22,7 @@ namespace BE
         public Event Event { get; set; }
         public int ClusterId { get; set; }
          
-        public string info { get { return ToString(); } set {} }
+        public string info { get { return ToStringInfo(); } set {} }
         public byte[] image { get; set; }
 
         public Report()
@@ -35,7 +35,11 @@ namespace BE
         }
         public override string ToString()
         {
-            return "Reporter: " + ReporterName+ ", location: "+ Adress;
+            return "Report Id: "+Id+ ",  Reporter: " + ReporterName+ ",  location: "+ Adress+",  Time report: "+ Time;
+        }
+        public  string ToStringInfo()
+        {
+            return "Reporter: " + ReporterName + ", location: " + Adress;
         }
         public object Clone()
         {
