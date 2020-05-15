@@ -8,7 +8,7 @@ The project was built in MVVM code architecture and on the three tier model.
 
 Name of institution-
 
-Heart Academic Center
+Lev Academic Center
 
 Writers-
 
